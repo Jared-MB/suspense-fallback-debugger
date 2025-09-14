@@ -1,0 +1,40 @@
+{
+	"name": "suspense-fallback-debugger",
+	"version": "2.0.0",
+	"description": "Suspense Fallback Debugger for React",
+	"main": "dist/index.js",
+	"module": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"private": false,
+	"scripts": {
+		"dev": "tsup src/index.ts src/types/index.ts --format cjs,esm --dts --watch",
+		"build": "tsup src/index.ts src/types/index.ts --format cjs,esm --dts"
+	},
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"default": "./dist/index.js"
+		}
+	},
+	"peerDependencies": {
+		"react": "19",
+		"react-dom": "19"
+	},
+	"dependencies": {
+		"@radix-ui/react-dropdown-menu": "2.1.16",
+		"@workspace/ui": "workspace:*",
+		"lucide-react": "0.525.0",
+		"zustand": "5.0.7"
+	},
+	"devDependencies": {
+		"@types/node": "22.15.3",
+		"@types/react": "19.1.0",
+		"@types/react-dom": "19.1.1",
+		"@workspace/typescript-config": "workspace:*",
+		"tsup": "8.5.0",
+		"typescript": "5.9.2"
+	},
+	"keywords": [],
+	"author": "Jared-MB",
+	"license": "ISC"
+}
