@@ -1,5 +1,11 @@
 # suspense-fallback-debugger
 
+## 1.0.5
+
+### Patch Changes
+
+- 76291c5: Add readme and license
+
 ## 1.0.4
 
 ### Patch Changes
