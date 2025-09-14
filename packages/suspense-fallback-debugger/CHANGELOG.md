@@ -1,6 +1,12 @@
 # suspense-fallback-debugger
 
-## 2.0.0
+## 1.0.1
+
+### Patch Changes
+
+- 8dd797c: Remove unused files for npm
+
+## 1.0.0
 
 ### Major Changes
 
