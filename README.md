@@ -43,6 +43,9 @@ export default function App() {
 }
 ```
 
+> [!NOTE]
+> By default, the debugger will only be rendered in development mode (if your `NODE_ENV` is set to `development`).
+
 ### Key Features
 
 *   **Visual Debugging**: The package renders a subtle border around your `Suspense` components in development mode, which highlights when you hover over them in the `DevDropdown`.
