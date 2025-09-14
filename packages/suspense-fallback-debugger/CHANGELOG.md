@@ -1,5 +1,11 @@
 # suspense-fallback-debugger
 
+## 1.0.4
+
+### Patch Changes
+
+- dabe6aa: Change solution text when no suspense is detected
+
 ## 1.0.3
 
 ### Patch Changes
