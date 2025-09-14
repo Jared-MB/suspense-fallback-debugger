@@ -1,5 +1,11 @@
 # suspense-fallback-debugger
 
+## 1.0.3
+
+### Patch Changes
+
+- 0dcab3e: Add "use client" directive so it can be used at next
+
 ## 1.0.2
 
 ### Patch Changes
