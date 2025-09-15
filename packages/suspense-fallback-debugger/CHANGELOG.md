@@ -1,5 +1,11 @@
 # suspense-fallback-debugger
 
+## 1.1.0
+
+### Minor Changes
+
+- 79b86c2: Add exports for dropdown so modal can be extended
+
 ## 1.0.5
 
 ### Patch Changes
