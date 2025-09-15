@@ -1,5 +1,11 @@
 # suspense-fallback-debugger
 
+## 1.1.2
+
+### Patch Changes
+
+- 8e114cd: Add dropdown-menu on dist xd
+
 ## 1.1.1
 
 ### Patch Changes
