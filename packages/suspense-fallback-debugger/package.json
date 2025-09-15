@@ -7,17 +7,17 @@
 	"types": "dist/index.d.ts",
 	"private": false,
 	"scripts": {
-		"dev": "tsup src/index.ts src/components/dropdown.tsx --format cjs,esm --dts --watch",
-		"build": "tsup src/index.ts src/components/dropdown.tsx --format cjs,esm --dts"
+		"dev": "tsup src/index.ts src/components/dropdown-menu.tsx --format cjs,esm --dts --watch",
+		"build": "tsup src/index.ts src/components/dropdown-menu.tsx --format cjs,esm --dts"
 	},
 	"exports": {
 		".": {
 			"types": "./dist/index.d.ts",
 			"default": "./dist/index.js"
 		},
-		"./dropdown": {
-			"types": "./dist/components/dropdown.d.ts",
-			"default": "./dist/components/dropdown.js"
+		"./dropdown-menu": {
+			"types": "./dist/components/dropdown-menu.d.ts",
+			"default": "./dist/components/dropdown-menu.js"
 		}
 	},
 	"files": [

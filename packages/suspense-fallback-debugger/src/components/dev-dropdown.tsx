@@ -18,7 +18,6 @@ import {
 	DropdownMenuPortal,
 } from "@workspace/ui/components/dropdown-menu";
 import { Button } from "@workspace/ui/components/button";
-import { Separator } from "@workspace/ui/components/separator";
 import { DropdownSuspenseContent } from "../suspense";
 
 interface Props {
@@ -71,7 +70,7 @@ export function DevDropdown({ children }: Props) {
 				{children ? (
 					<>
 						{children}
-						<Separator />
+						<DropdownMenuSeparator />
 					</>
 				) : null}
 				<DropdownMenuGroup>
