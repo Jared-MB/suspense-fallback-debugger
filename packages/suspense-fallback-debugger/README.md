@@ -14,6 +14,24 @@ yarn add suspense-fallback-debugger -E
 pnpm add suspense-fallback-debugger -E
 ```
 
+This package was created using Shadcn UI and Tailwind CSS, so you must have to import the styles of the package in your project. You can do this by adding the following line to your `globals.css` file:
+
+```css
+/* Using Tailwind@4 */
+
+/* Your current imports */
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/* Suspense Fallback Debugger */
+@source "../node_modules/suspense-fallback-debugger"; /* or wherever you installed it */
+
+/* Other styles */
+:root {
+  ...;
+}
+```
+
 ## Usage
 
 To start using the debugger, you need to import and use the custom `Suspense` component from the package instead of the default `React.Suspense`. Additionally, you can add the `DevDropdown` component to your layout to interact with the debugger.
@@ -21,7 +39,7 @@ To start using the debugger, you need to import and use the custom `Suspense` co
 Here's a basic example of how to set it up in your application:
 
 ```tsx
-import { Suspense, DevDropdown } from 'suspense-fallback-debugger';
+import { Suspense, DevDropdown } from "suspense-fallback-debugger";
 
 function MyComponent() {
   return (
@@ -48,7 +66,7 @@ export default function App() {
 
 ### Key Features
 
-*   **Visual Debugging**: The package renders a subtle border around your `Suspense` components in development mode, which highlights when you hover over them in the `DevDropdown`.
-*   **Force Fallbacks**: From the `DevDropdown`, you can click on any `Suspense` component's ID to force its fallback state to be displayed. This is incredibly useful for testing your loading UI without having to simulate slow network conditions.
-*   **Identify Suspense Components**: The `DevDropdown` lists all the `Suspense` components currently rendered on the page, making it easy to identify and debug them.
-*   **Fallback Warnings**: If a `Suspense` component is missing a `fallback` prop, the debugger will display a warning, helping you catch potential issues early.
+- **Visual Debugging**: The package renders a subtle border around your `Suspense` components in development mode, which highlights when you hover over them in the `DevDropdown`.
+- **Force Fallbacks**: From the `DevDropdown`, you can click on any `Suspense` component's ID to force its fallback state to be displayed. This is incredibly useful for testing your loading UI without having to simulate slow network conditions.
+- **Identify Suspense Components**: The `DevDropdown` lists all the `Suspense` components currently rendered on the page, making it easy to identify and debug them.
+- **Fallback Warnings**: If a `Suspense` component is missing a `fallback` prop, the debugger will display a warning, helping you catch potential issues early.
