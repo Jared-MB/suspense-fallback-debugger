@@ -1,5 +1,11 @@
 # suspense-fallback-debugger
 
+## 1.1.1
+
+### Patch Changes
+
+- 6aecbca: Rename dropdown to dropdown-menu and separator is now imported from dropdown-menu-separator
+
 ## 1.1.0
 
 ### Minor Changes
