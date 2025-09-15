@@ -19,13 +19,28 @@ import {
 } from "@workspace/ui/components/dropdown-menu";
 import { Button } from "@workspace/ui/components/button";
 import { DropdownSuspenseContent } from "../suspense";
+import { create } from "zustand";
+
+interface State {
+	render: boolean;
+	setRender: (render: boolean) => void;
+}
+
+export const useRender = create<State>()((set) => ({
+	render: false,
+	setRender: (render) => set({ render }),
+}));
 
 interface Props {
 	children?: React.ReactNode;
+	forceRender?: boolean;
 }
 
-export function DevDropdown({ children }: Props) {
-	if (!__IS__DEV__) return null;
+export function DevDropdown({ children, forceRender }: Props) {
+	if (!__IS__DEV__ && !forceRender) return null;
+
+	// biome-ignore lint/correctness/useHookAtTopLevel: We don't need to load this hook if we are not in dev
+	const setRender = useRender((state) => state.setRender);
 
 	// biome-ignore lint/correctness/useHookAtTopLevel: We don't need to load this hook if we are not in dev
 	const [position, setPosition] = useState("top-right");
@@ -41,7 +56,8 @@ export function DevDropdown({ children }: Props) {
 		if (stored) {
 			setPosition(stored);
 		}
-	}, []);
+		setRender(forceRender ?? false);
+	}, [forceRender]);
 
 	return (
 		<DropdownMenu>

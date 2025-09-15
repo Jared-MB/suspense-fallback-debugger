@@ -28,6 +28,7 @@ import {
 import { cn } from "@workspace/ui/lib/utils";
 
 import { __IS__DEV__ } from "../lib/__is__dev__";
+import { useRender } from "src/components/dev-dropdown";
 
 interface RenderedSuspensesState {
 	renderedSuspenses: Set<string>;
@@ -108,6 +109,8 @@ export function Suspense({
 	const isSelected = useIsSelected(id);
 	const isHovered = useIsHovered(id);
 
+	const render = useRender((state) => state.render);
+
 	const stableAddSuspense = useRenderedSuspenses(
 		useCallback((state) => state.addSuspense, []),
 	);
@@ -131,7 +134,7 @@ export function Suspense({
 		[isSelected, isHovered, className],
 	);
 
-	if (!__IS__DEV__) {
+	if (!__IS__DEV__ && !render) {
 		return (
 			<ReactSuspense fallback={fallback} {...props} name={id}>
 				{children}
