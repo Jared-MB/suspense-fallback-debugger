@@ -1,6 +1,6 @@
 {
 	"name": "suspense-fallback-debugger",
-	"version": "1.1.2",
+	"version": "1.1.3",
 	"description": "Suspense Fallback Debugger for React",
 	"main": "dist/index.js",
 	"module": "dist/index.js",

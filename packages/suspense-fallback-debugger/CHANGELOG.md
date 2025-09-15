@@ -1,5 +1,11 @@
 # suspense-fallback-debugger
 
+## 1.1.3
+
+### Patch Changes
+
+- 5070787: Enable force render of dropdown and dev suspense
+
 ## 1.1.2
 
 ### Patch Changes
