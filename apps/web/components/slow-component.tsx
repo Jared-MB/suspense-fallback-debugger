@@ -12,7 +12,7 @@ import type { Route } from "next";
 export function SlowComponent() {
   return (
     <section className="space-y-6">
-      <div className="grid grid-cols-[45%_1fr] gap-4">
+      <div className="grid md:grid-cols-[45%_1fr] gap-4">
         <ViewTransition>
           <Suspense fallback={<UserDataSkeleton />}>
             <UserData />
