@@ -1,5 +1,11 @@
 # suspense-fallback-debugger
 
+## 1.1.4
+
+### Patch Changes
+
+- a94181a: update react type version
+
 ## 1.1.3
 
 ### Patch Changes
