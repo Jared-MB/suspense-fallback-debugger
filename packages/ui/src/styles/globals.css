@@ -61,6 +61,20 @@
   --shadow-2xl: 0.25rem 0.25rem 0rem 0rem hsl(60 20% 40% / 0.5);
   --tracking-normal: 0rem;
   --spacing: 0.25rem;
+
+  /* Code highlighting colors - Light theme (Atom One Light) */
+  --code-base: #fafafa;
+  --code-mono-1: #383a42;
+  --code-mono-2: #686b77;
+  --code-mono-3: #a0a1a7;
+  --code-hue-1: #0184bb;
+  --code-hue-2: #4078f2;
+  --code-hue-3: #a626a4;
+  --code-hue-4: #50a14f;
+  --code-hue-5: #e45649;
+  --code-hue-5-2: #c91243;
+  --code-hue-6: #986801;
+  --code-hue-6-2: #c18401;
 }
 
 .dark {
@@ -113,6 +127,20 @@
   --shadow-xl: 0.25rem 0.25rem 0rem 0rem hsl(0 0% 0% / 0.9),
     0.25rem 8px 10px -1px hsl(0 0% 0% / 1);
   --shadow-2xl: 0.25rem 0.25rem 0rem 0rem hsl(0 0% 0% / 1);
+
+  /* Code highlighting colors - Dark theme (Atom One Dark) */
+  --code-base: #282c34;
+  --code-mono-1: #abb2bf;
+  --code-mono-2: #818896;
+  --code-mono-3: #5c6370;
+  --code-hue-1: #56b6c2;
+  --code-hue-2: #61aeee;
+  --code-hue-3: #c678dd;
+  --code-hue-4: #98c379;
+  --code-hue-5: #e06c75;
+  --code-hue-5-2: #be5046;
+  --code-hue-6: #d19a66;
+  --code-hue-6-2: #e6c07b;
 }
 
 @theme inline {
@@ -185,5 +213,84 @@ body {
   }
   body {
     @apply bg-background text-foreground;
+  }
+
+  /* Code highlighting using CSS variables */
+
+  .hljs {
+    background-color: color-mix(in oklab, var(--background) 10%, transparent);
+    font-family: var(--font-mono), var(--font-sans);
+    color: var(--code-mono-1);
+    font-size: 14px;
+  }
+
+  .hljs-comment,
+  .hljs-quote {
+    color: var(--code-mono-3);
+    font-style: italic;
+  }
+
+  .hljs-doctag,
+  .hljs-keyword,
+  .hljs-formula {
+    color: var(--code-hue-3);
+  }
+
+  .hljs-section,
+  .hljs-name,
+  .hljs-selector-tag,
+  .hljs-deletion,
+  .hljs-subst {
+    color: var(--code-hue-5);
+  }
+
+  .hljs-literal {
+    color: var(--code-hue-1);
+  }
+
+  .hljs-string,
+  .hljs-regexp,
+  .hljs-addition,
+  .hljs-attribute,
+  .hljs-meta .hljs-string {
+    color: var(--code-hue-4);
+  }
+
+  .hljs-attr,
+  .hljs-variable,
+  .hljs-template-variable,
+  .hljs-type,
+  .hljs-selector-class,
+  .hljs-selector-attr,
+  .hljs-selector-pseudo,
+  .hljs-number {
+    color: var(--code-hue-6);
+  }
+
+  .hljs-symbol,
+  .hljs-bullet,
+  .hljs-link,
+  .hljs-meta,
+  .hljs-selector-id,
+  .hljs-title {
+    color: var(--code-hue-2);
+  }
+
+  .hljs-built_in,
+  .hljs-title.class_,
+  .hljs-class .hljs-title {
+    color: var(--code-hue-6-2);
+  }
+
+  .hljs-emphasis {
+    font-style: italic;
+  }
+
+  .hljs-strong {
+    font-weight: bold;
+  }
+
+  .hljs-link {
+    text-decoration: underline;
   }
 }

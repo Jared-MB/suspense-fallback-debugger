@@ -1,1 +1,48 @@
-## Installation
+import { Install } from '@/components/install'
+import { Alert, AlertDescription } from "@workspace/ui/components/alert";
+
+import { AlertCircle } from "lucide-react";
+
+# Installation
+
+Install the package using your preferred package manager:
+
+<Install />
+
+## Styling
+
+Add the following code in your `global.css` file:
+
+```css
+@source "../node_modules/suspense-fallback-debugger"; /* adjust the path as needed */
+```
+
+<Alert>
+     <AlertCircle />
+     <AlertDescription>
+         **suspense-fallback-debugger** uses **tailwind@4**
+     </AlertDescription>
+</Alert>
+ 
+## Add to your layout
+
+Import the following into your layout file:
+
+```tsx
+import { DevDropdown } from "suspense-fallback-debugger";
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en">
+      <body>
+        {children}
+        <DevDropdown />
+      </body>
+    </html>
+  );
+}
+```

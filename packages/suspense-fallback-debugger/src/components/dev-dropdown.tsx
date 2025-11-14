@@ -39,10 +39,8 @@ interface Props {
 export function DevDropdown({ children, forceRender }: Props) {
   if (!__IS__DEV__ && !forceRender) return null;
 
-  // biome-ignore lint/correctness/useHookAtTopLevel: We don't need to load this hook if we are not in dev
   const setRender = useRender((state) => state.setRender);
 
-  // biome-ignore lint/correctness/useHookAtTopLevel: We don't need to load this hook if we are not in dev
   const [position, setPosition] = useState("bottom-right");
 
   const handlePositionChange = (value: string) => {
@@ -50,7 +48,6 @@ export function DevDropdown({ children, forceRender }: Props) {
     setPosition(value);
   };
 
-  // biome-ignore lint/correctness/useHookAtTopLevel: We don't need to load this hook if we are not in dev
   useEffect(() => {
     const stored = window.localStorage.getItem("react:suspense:debug:position");
     if (stored) {
