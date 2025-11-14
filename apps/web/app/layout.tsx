@@ -50,7 +50,7 @@ export default function RootLayout({
             <SidebarInset>
               <div className="min-h-dvh">
                 <AppHeader />
-                {children}
+                <div className="p-12">{children}</div>
               </div>
             </SidebarInset>
             <DevDropdown forceRender />

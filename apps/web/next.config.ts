@@ -1,5 +1,7 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+import type { NextConfig } from "next";
+import createMDX from "@next/mdx";
+
+const nextConfig: NextConfig = {
   transpilePackages: ["@workspace/ui"],
   cacheComponents: true,
   reactCompiler: true,
@@ -15,6 +17,9 @@ const nextConfig = {
       },
     ],
   },
+  pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
 };
 
-export default nextConfig;
+const withMDX = createMDX({});
+
+export default withMDX(nextConfig);

@@ -12,7 +12,7 @@ import { Tour } from "@/components/tour";
 
 export default function Page() {
   return (
-    <main className="p-12">
+    <main>
       <h1 className="text-3xl font-medium font-mono text-balance ">
         Suspense Fallback Debugger
       </h1>
