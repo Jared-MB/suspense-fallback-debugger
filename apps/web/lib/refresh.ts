@@ -3,5 +3,5 @@
 import { revalidateTag } from "next/cache";
 
 export const refresh = async (tag: string) => {
-	revalidateTag(tag);
+  revalidateTag(tag, "max");
 };
