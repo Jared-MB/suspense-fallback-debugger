@@ -264,18 +264,26 @@ function UserRecentActivitySkeleton() {
     <div className="space-y-3">
       <Skeleton className="w-36 h-5 mb-5" />
       <div className="space-y-2">
-        {Array.from({ length: 5 })
-          .fill(null)
-          .map((_, index) => (
-            <div
-              // biome-ignore lint/suspicious/noArrayIndexKey: No complex keys here because this is a static array
-              key={index}
-              className="flex items-start space-x-3 p-3 bg-muted/50 rounded-lg"
-            >
-              <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-              <Skeleton className="w-2/5 h-5 bg-primary/10" />
-            </div>
-          ))}
+        <div className="flex items-start space-x-3 p-3 bg-muted/50 rounded-lg">
+          <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+          <Skeleton className="w-2/5 h-5 bg-primary/10" />
+        </div>
+        <div className="flex items-start space-x-3 p-3 bg-muted/50 rounded-lg">
+          <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+          <Skeleton className="w-2/5 h-5 bg-primary/10" />
+        </div>
+        <div className="flex items-start space-x-3 p-3 bg-muted/50 rounded-lg">
+          <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+          <Skeleton className="w-2/5 h-5 bg-primary/10" />
+        </div>
+        <div className="flex items-start space-x-3 p-3 bg-muted/50 rounded-lg">
+          <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+          <Skeleton className="w-2/5 h-5 bg-primary/10" />
+        </div>
+        <div className="flex items-start space-x-3 p-3 bg-muted/50 rounded-lg">
+          <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+          <Skeleton className="w-2/5 h-5 bg-primary/10" />
+        </div>
       </div>
     </div>
   );
