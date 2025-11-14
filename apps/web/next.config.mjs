@@ -1,9 +1,20 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   transpilePackages: ["@workspace/ui"],
+  cacheComponents: true,
+  reactCompiler: true,
+  typedRoutes: true,
   experimental: {
-    cacheComponents: true
-  }
-}
+    turbopackFileSystemCacheForDev: true,
+    viewTransition: true,
+  },
+  images: {
+    remotePatterns: [
+      {
+        hostname: "avatars.githubusercontent.com",
+      },
+    ],
+  },
+};
 
-export default nextConfig
+export default nextConfig;
