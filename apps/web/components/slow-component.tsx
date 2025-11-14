@@ -7,6 +7,7 @@ import Link from "next/link";
 import { wait } from "@/lib/wait";
 import { Skeleton } from "@workspace/ui/components/skeleton";
 import { ViewTransition } from "react";
+import type { Route } from "next";
 
 export function SlowComponent() {
   return (
@@ -238,7 +239,7 @@ async function UserRecentActivity() {
             <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
             <p className="text-sm text-foreground">
               <Link
-                href={activity.url}
+                href={activity.url as Route}
                 target="_blank"
                 rel="noopener noreferrer"
               >
