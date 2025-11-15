@@ -1,0 +1,158 @@
+# Extend your \<DevDropdown/>
+
+**\<DevDropdown/>** was created thinking about extention, so you can extend it with your own components and devtools.
+
+On this guide, we will show you how to extend the \<DevDropdown/> to add a dev bypass feature for role based authentication.
+
+Create a new file called `dev-tools.tsx` with the following content:
+
+```tsx
+"use client"; /* Do not forget to add the "use client" directive if you are using Next.js */
+
+import { DevDropdown } from 'suspense-fallback-debugger';
+
+export function DevTools() {
+  return (
+    <DevDropdown/>
+  );
+};
+```
+
+Then you can update your layout to replace the default \<DevDropdown/> with your custom one:
+
+```tsx
+import { DevTools } from "@/components/dev-tools"; /* or where you have it */
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en">
+      <body>
+        {children}
+        <DevTools />
+      </body>
+    </html>
+  );
+}
+```
+
+This will show the same devtools as before, but since is from a different file,
+you can easily customize it to fit your needs and you can use client components.
+
+**suspense-fallback-debugger** was created using **Shadcn UI**, so we also provide dropdown menu components to customize it.
+
+So let's add a component named **DevByPass** to start extending it.
+
+```tsx
+"use client"
+
+import {
+	DropdownMenuGroup,
+	DropdownMenuGroupLabel,
+	DropdownMenuLabel,
+	DropdownMenuSeparator,
+	DropdownMenuSub,
+	DropdownMenuSubContent,
+	DropdownMenuSubTrigger,
+	DropdownMenuRadioGroup,
+	DropdownMenuRadioItem,
+	DropdownMenuPortal,
+} from "suspense-fallback-debugger/dropdown-menu";
+import { useState, useEffect } from 'react'
+
+/**
+ * Your auth logic
+ */
+import { useSession, Role, type RoleType } from '@/auth'
+import { setDevSessionRole, getDevSessionRole } from '@/auth/__dev__'
+
+function DevByPass() {
+  const { session } = useSession();
+
+  const [role, setRole] = useState<RoleType | undefined>(undefined);
+
+  const handleRoleChange = async (role: RoleType) => {
+  	await setDevSessionRole(role);
+  	setRole(role);
+  };
+
+  useEffect(() => {
+  	getDevSessionRole().then((role) => {
+  		if (!role) {
+  			setRole(session?.user.role);
+  			return;
+  		}
+
+  		setRole(role);
+  	});
+  }, [session?.user]);
+
+  return (
+  	<DropdownMenuGroup>
+  		<DropdownMenuGroupLabel>Debug</DropdownMenuGroupLabel>
+  		<DropdownMenuSub>
+  			<DropdownMenuSubTrigger>Role</DropdownMenuSubTrigger>
+  			<DropdownMenuPortal>
+  				<DropdownMenuSubContent>
+  					<DropdownMenuGroup>
+  						<DropdownMenuLabel>Set role as</DropdownMenuLabel>
+  						<DropdownMenuSeparator />
+  						<DropdownMenuRadioGroup
+  							value={role}
+  							onValueChange={(role) => handleRoleChange(role as RoleType)}
+  						>
+  							<DropdownMenuRadioItem value={Role.ADMIN}>
+  								Admin
+  							</DropdownMenuRadioItem>
+  							<DropdownMenuRadioItem value={Role.USER}>
+  							    User
+  							</DropdownMenuRadioItem>
+  						</DropdownMenuRadioGroup>
+  					</DropdownMenuGroup>
+  				</DropdownMenuSubContent>
+  			</DropdownMenuPortal>
+  		</DropdownMenuSub>
+  	</DropdownMenuGroup>
+  );
+}
+```
+
+All the dropdown menu components are exported from `suspense-fallback-debugger/dropdown-menu`. These components are
+the same as the ones from shadcn. So you can check the [Shadcn/DropdownMenu](https://ui.shadcn.com/docs/components/dropdown-menu) documentation for more information.
+
+Then added to our **\<DevDropdown/>** in your **\<DevTools/>** as its children:
+
+```tsx
+"use client";
+
+import { DevDropdown } from 'suspense-fallback-debugger';
+import { DevByPass } from '@/components/__dev__'
+
+export function DevTools() {
+  return (
+    <DevDropdown>
+      <DevByPass/>
+    </DevDropdown>
+  );
+};
+```
+
+And that's it!
+
+Since the dropdown will only be rendered on development environment, you can add as many dev tools as you need to make your development experience more efficient.
+
+## Troubleshootings
+
+### Why I cannot use my shadcn dropdown menu to extend my dev dropdown menu?
+
+Despite you have already installed your dropdown menu from shadcn, you cannot use it to extend your dev dropdown menu.
+This is because a conflict with context api, dropdown menu components will search for the nearest context provider,
+and since they are imported from different packages context can't match and will throw an error. That's the reason why we
+export also the dropdown menu components.
+
+## Reference
+
+- [Shadcn/DropdownMenu](https://ui.shadcn.com/docs/components/dropdown-menu)

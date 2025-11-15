@@ -5,17 +5,17 @@ import Link from "next/link";
 
 const components = {
   h1: ({ children, ...props }: { children: React.ReactNode }) => (
-    <h1 className="text-3xl font-medium font-mono text-balance mb-4" {...props}>
+    <h1 className="text-3xl font-medium font-mono text-balance mb-5" {...props}>
       {children}
     </h1>
   ),
   h2: ({ children, ...props }: { children: React.ReactNode }) => (
-    <h2 className="text-2xl font-medium mb-3" {...props}>
+    <h2 className="text-2xl font-medium mb-4" {...props}>
       {children}
     </h2>
   ),
   h3: ({ children, ...props }: { children: React.ReactNode }) => (
-    <h3 className="text-xl font-medium mb-2" {...props}>
+    <h3 className="text-xl font-medium mb-3" {...props}>
       {children}
     </h3>
   ),
