@@ -115,8 +115,8 @@ const guides: { title: string; url: Route }[] = [
     url: "/guides/extend-your-dev-dropdown",
   },
   {
-    title: "Error warnings",
-    url: "/guides/error-warnings",
+    title: "Preventing build errors",
+    url: "/guides/preventing-build-errors",
   },
 ];
 

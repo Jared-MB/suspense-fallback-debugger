@@ -1,7 +1,84 @@
 # API Reference
 
+Here you can find a detailed API reference for the components used in the application.
+
 ## Components
 
 ### Suspense
 
+Render a fallback UI while the child component is loading.
+
+#### Import
+
+```tsx
+import { Suspense } from 'suspense-fallback-debugger';
+```
+
+#### Basic Usage
+
+```tsx
+import { Suspense } from 'suspense-fallback-debugger';
+
+export function MyComponent() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <MyChildComponent />
+    </Suspense>
+  );
+}
+```
+
+#### Props
+
+See [react Suspense](https://react.dev/reference/react/Suspense#suspense) documentation for more details.
+
+#### Additional Props
+
+| Name | Type | Required | Description | Default |
+| :--- | :--- | :--- | :--- | :--- |
+| className?* | string | false | Additional CSS classes to apply to the component. | undefined |
+
+\* Sometimes you must pass same children className to the Suspense component so you can have the same style as production, most of the cases
+this is not necessary.
+
 ### DevDropdown
+
+Dropdown menu component where the all `<Suspense/>` rendered are shown.
+
+#### Import
+
+```tsx
+import { DevDropdown } from 'suspense-fallback-debugger';
+```
+
+#### Basic Usage
+
+```tsx
+import { DevDropdown } from 'suspense-fallback-debugger';
+
+export function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en">
+      <body>
+        {children}
+        <DevDropdown />
+      </body>
+    </html>
+  );
+}
+```
+
+#### Props
+
+| Name | Type | Required | Description | Default |
+| :--- | :--- | :--- | :--- | :--- |
+| children? | React.ReactNode | false | Children to render inside the dropdown menu. | undefined |
+| forceRender? | boolean | false | Force render the dropdown menu even if environment is not development. | false |
+
+### SuspenseContext
+
+### DropdownMenu

@@ -61,7 +61,15 @@ export default function RootLayout({
 This will show the same devtools as before, but since is from a different file,
 you can easily customize it to fit your needs and you can use client components.
 
-**suspense-fallback-debugger** was created using **Shadcn UI**, so we also provide dropdown menu components to customize it.
+import { Alert, AlertDescription } from '@workspace/ui/components/alert';
+import { AlertCircle } from 'lucide-react'
+
+<Alert>
+    <AlertCircle />
+    <AlertDescription>
+        **suspense-fallback-debugger** was created using **Shadcn UI**, so we also provide dropdown menu components to customize it.
+    </AlertDescription>
+</Alert>
 
 So let's add a component named **DevBypass** to start extending it.
 
