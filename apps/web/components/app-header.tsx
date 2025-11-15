@@ -33,7 +33,9 @@ export function AppHeader() {
                 <Fragment key={route}>
                   <BreadcrumbSeparator />
                   <BreadcrumbItem>
-                    <BreadcrumbLink href={`/${route}`}>{route}</BreadcrumbLink>
+                    <BreadcrumbLink href={`/${route}`} className="capitalize">
+                      {route}
+                    </BreadcrumbLink>
                   </BreadcrumbItem>
                 </Fragment>
               ))
