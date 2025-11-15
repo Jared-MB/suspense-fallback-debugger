@@ -8,19 +8,22 @@ import PnpmInstall from "@/components/mdx/pnpm-install.mdx";
 import NpmInstall from "@/components/mdx/npm-install.mdx";
 import YarnInstall from "@/components/mdx/yarn-install.mdx";
 import { Terminal } from "lucide-react";
+import { CodeHeader, CodeHeaderContent, CodeHeaderIcon } from "./code-header";
 
 export function Install() {
   return (
     <Tabs defaultValue="pnpm">
-      <TabsList className="h-fit w-full justify-start bg-sidebar-accent/50 border-2 border-sidebar/50 border-b-1 border-b-gray-400/10">
-        <div className="flex items-center p-2 gap-2">
-          <div className="p-2">
+      <TabsList asChild>
+        <CodeHeader>
+          <CodeHeaderIcon>
             <Terminal className="w-5 h-5" />
-          </div>
-          <TabsTrigger value="pnpm">pnpm</TabsTrigger>
-          <TabsTrigger value="npm">npm</TabsTrigger>
-          <TabsTrigger value="yarn">yarn</TabsTrigger>
-        </div>
+          </CodeHeaderIcon>
+          <CodeHeaderContent>
+            <TabsTrigger value="pnpm">pnpm</TabsTrigger>
+            <TabsTrigger value="npm">npm</TabsTrigger>
+            <TabsTrigger value="yarn">yarn</TabsTrigger>
+          </CodeHeaderContent>
+        </CodeHeader>
       </TabsList>
       <TabsContent value="pnpm">
         <PnpmInstall />

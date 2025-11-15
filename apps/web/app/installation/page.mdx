@@ -2,6 +2,10 @@ import { Install } from '@/components/install'
 import { Alert, AlertDescription } from "@workspace/ui/components/alert";
 import { NextSteps } from './next-steps';
 
+import { CodeHeader, CodeHeaderIcon, CodeHeaderContent } from '@/components/code-header'
+import { IconBrandTypescript, IconFileTypeCss } from '@tabler/icons-react'
+
+
 import { AlertCircle } from "lucide-react";
 
 # Installation
@@ -20,15 +24,31 @@ Before you begin, make sure you have the following installed:
 
 Add the following code in your `global.css` file:
 
+<CodeHeader>
+    <CodeHeaderIcon>
+        <IconFileTypeCss />
+    </CodeHeaderIcon>
+    <CodeHeaderContent>
+        globals.css
+    </CodeHeaderContent>
+</CodeHeader>
 ```css
 @source "../node_modules/suspense-fallback-debugger"; /* adjust the path as needed */
 ```
 
- 
+
 ## Add to your layout
 
 Import the following into your layout file:
 
+<CodeHeader>
+    <CodeHeaderIcon>
+        <IconBrandTypescript />
+    </CodeHeaderIcon>
+    <CodeHeaderContent>
+        layout.tsx
+    </CodeHeaderContent>
+</CodeHeader>
 ```tsx
 import { DevDropdown } from "suspense-fallback-debugger";
 

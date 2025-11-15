@@ -1,15 +1,26 @@
+import { CodeHeader, CodeHeaderIcon, CodeHeaderContent } from '@/components/code-header'
+import { IconBrandTypescript } from '@tabler/icons-react'
+
 # Error warnings
 
 Some API's need a Suspense boundary to work correctly like `useSearchParams` from **next**, sometimes
 this hook can be used without any error on development mode, but once you compile the code,
 it will throw an error due to missing Suspense boundary.
 
-To fix this issue, you can extend this hook with the `SuspenseContext` provided by `suspense-fallback-debugger`.
+To prevent this issue, you can implement your custom hooks with the `SuspenseContext` provided by `suspense-fallback-debugger`.
 
 For example, let's create a `useSearch` hook to handle the url query parameters.
 
-First create a `use-search.ts` file.
+First create a `use-search.ts` file:
 
+<CodeHeader>
+    <CodeHeaderIcon>
+        <IconBrandTypescript />
+    </CodeHeaderIcon>
+    <CodeHeaderContent>
+        use-search.ts
+    </CodeHeaderContent>
+</CodeHeader>
 ```ts
 "use client";
 
@@ -63,8 +74,15 @@ This hook will handle search queries with a debounce time but we still have the 
 
 So let's fix it, import the `SuspenseContext` from `suspense-fallback-debugger` & read it with the `useContext` react hook.
 
+<CodeHeader>
+    <CodeHeaderIcon>
+        <IconBrandTypescript />
+    </CodeHeaderIcon>
+    <CodeHeaderContent>
+        use-search.ts
+    </CodeHeaderContent>
+</CodeHeader>
 ```ts
-
 "use client";
 
 import type { Route } from "next";
@@ -108,6 +126,10 @@ export function useSearch(
             you must import it from 'suspense-fallback-debugger'`,
         );
     }
+
+    /**
+     * All the rest of the hook can stay the same
+     */
 
     const router = useRouter();
     const pathname = usePathname();

@@ -1,3 +1,6 @@
+import { CodeHeader, CodeHeaderIcon, CodeHeaderContent } from '@/components/code-header'
+import { IconBrandTypescript } from '@tabler/icons-react'
+
 # Extend your \<DevDropdown/>
 
 **\<DevDropdown/>** was created thinking about extention, so you can extend it with your own components and devtools.
@@ -6,6 +9,14 @@ On this guide, we will show you how to extend the \<DevDropdown/> to add a dev b
 
 Create a new file called `dev-tools.tsx` with the following content:
 
+<CodeHeader>
+    <CodeHeaderIcon>
+        <IconBrandTypescript />
+    </CodeHeaderIcon>
+    <CodeHeaderContent>
+        dev-tools.tsx
+    </CodeHeaderContent>
+</CodeHeader>
 ```tsx
 "use client"; /* Do not forget to add the "use client" directive if you are using Next.js */
 
@@ -20,6 +31,14 @@ export function DevTools() {
 
 Then you can update your layout to replace the default \<DevDropdown/> with your custom one:
 
+<CodeHeader>
+    <CodeHeaderIcon>
+        <IconBrandTypescript />
+    </CodeHeaderIcon>
+    <CodeHeaderContent>
+        layout.tsx
+    </CodeHeaderContent>
+</CodeHeader>
 ```tsx
 import { DevTools } from "@/components/dev-tools"; /* or where you have it */
 
@@ -44,8 +63,16 @@ you can easily customize it to fit your needs and you can use client components.
 
 **suspense-fallback-debugger** was created using **Shadcn UI**, so we also provide dropdown menu components to customize it.
 
-So let's add a component named **DevByPass** to start extending it.
+So let's add a component named **DevBypass** to start extending it.
 
+<CodeHeader>
+    <CodeHeaderIcon>
+        <IconBrandTypescript />
+    </CodeHeaderIcon>
+    <CodeHeaderContent>
+        dev-bypass.tsx
+    </CodeHeaderContent>
+</CodeHeader>
 ```tsx
 "use client"
 
@@ -69,7 +96,7 @@ import { useState, useEffect } from 'react'
 import { useSession, Role, type RoleType } from '@/auth'
 import { setDevSessionRole, getDevSessionRole } from '@/auth/__dev__'
 
-function DevByPass() {
+function DevBypass() {
   const { session } = useSession();
 
   const [role, setRole] = useState<RoleType | undefined>(undefined);
@@ -125,11 +152,19 @@ the same as the ones from shadcn. So you can check the [Shadcn/DropdownMenu](htt
 
 Then added to our **\<DevDropdown/>** in your **\<DevTools/>** as its children:
 
+<CodeHeader>
+    <CodeHeaderIcon>
+        <IconBrandTypescript />
+    </CodeHeaderIcon>
+    <CodeHeaderContent>
+        dev-tools.tsx
+    </CodeHeaderContent>
+</CodeHeader>
 ```tsx
 "use client";
 
 import { DevDropdown } from 'suspense-fallback-debugger';
-import { DevByPass } from '@/components/__dev__'
+import { DevBypass } from '@/components/__dev__/dev-bypass'
 
 export function DevTools() {
   return (
