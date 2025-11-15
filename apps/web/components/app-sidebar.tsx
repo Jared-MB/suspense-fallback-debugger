@@ -115,8 +115,8 @@ const guides: { title: string; url: Route }[] = [
     url: "/guides/extend-your-dev-dropdown",
   },
   {
-    title: "Use Suspense with useSearchParams",
-    url: "/guides/safe-builds",
+    title: "Error warnings",
+    url: "/guides/error-warnings",
   },
 ];
 
