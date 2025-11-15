@@ -1,5 +1,6 @@
 import { Install } from '@/components/install'
 import { Alert, AlertDescription } from "@workspace/ui/components/alert";
+import { NextSteps } from './next-steps';
 
 import { AlertCircle } from "lucide-react";
 
@@ -9,6 +10,12 @@ Install the package using your preferred package manager:
 
 <Install />
 
+## Requirements
+
+Before you begin, make sure you have the following installed:
+
+- TailwindCSS@4
+
 ## Styling
 
 Add the following code in your `global.css` file:
@@ -17,12 +24,6 @@ Add the following code in your `global.css` file:
 @source "../node_modules/suspense-fallback-debugger"; /* adjust the path as needed */
 ```
 
-<Alert>
-     <AlertCircle />
-     <AlertDescription>
-         **suspense-fallback-debugger** uses **tailwind@4**
-     </AlertDescription>
-</Alert>
  
 ## Add to your layout
 
@@ -46,3 +47,8 @@ export default function RootLayout({
   );
 }
 ```
+
+That's it! You're now ready to start using **suspense-fallback-debugger** in your project.
+
+## What's next?
+<NextSteps />

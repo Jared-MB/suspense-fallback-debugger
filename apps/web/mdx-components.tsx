@@ -13,15 +13,20 @@ const components = {
       {children}
     </h2>
   ),
+  ul: ({ children, ...props }: { children: React.ReactNode }) => (
+    <ul className="list-disc list-inside pb-4" {...props}>
+      {children}
+    </ul>
+  ),
   p: ({ children, ...props }: { children: React.ReactNode }) => (
-    <p className="text-pretty" {...props}>
+    <p className="text-pretty pb-4" {...props}>
       {children}
     </p>
   ),
   pre: ({ children, ...props }: { children: React.ReactNode }) => {
     return (
       <pre
-        className="bg-sidebar/50 border-2 border-sidebar/50 p-4 relative my-4"
+        className="bg-sidebar/50 border-2 border-sidebar/50 p-4 relative mb-4"
         {...props}
       >
         {children}

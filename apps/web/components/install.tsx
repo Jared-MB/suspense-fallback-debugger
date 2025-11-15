@@ -11,7 +11,7 @@ import { Terminal } from "lucide-react";
 
 export function Install() {
   return (
-    <Tabs defaultValue="pnpm" className="[&_pre]:mt-0! mt-4">
+    <Tabs defaultValue="pnpm">
       <TabsList className="h-fit w-full justify-start bg-sidebar-accent/50 border-2 border-sidebar/50 border-b-1 border-b-gray-400/10">
         <div className="flex items-center p-2 gap-2">
           <div className="p-2">
