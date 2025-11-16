@@ -1,5 +1,12 @@
 import Link from "next/link";
 
+const components = [
+  "Suspense",
+  "DevDropdown",
+  "SuspenseContext",
+  "DropdownMenu (Components)",
+];
+
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="grid grid-cols-[1fr_25%] gap-12 relative">
@@ -15,20 +22,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 <Link href="#Components">Components</Link>
               </h6>
               <ul className="[&_li:hover]:text-primary cursor-pointer ml-4 flex flex-col gap-2">
-                <li>
-                  <Link href="#Suspense">Suspense</Link>
-                </li>
-                <li>
-                  <Link href="#DevDropdown">DevDropdown</Link>
-                </li>
-                <li>
-                  <Link href="#SuspenseContext">SuspenseContext</Link>
-                </li>
-                <li>
-                  <Link href="#DropdownMenu (Components)">
-                    DropdownMenu (Components)
-                  </Link>
-                </li>
+                {components.map((component) => (
+                  <li key={component}>
+                    <Link href={`#${component}`}>{component}</Link>
+                  </li>
+                ))}
               </ul>
             </li>
           </ul>
