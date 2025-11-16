@@ -14,18 +14,21 @@ export function SlowComponent() {
     <section className="space-y-6">
       <div className="grid md:grid-cols-[45%_1fr] gap-4">
         <ViewTransition>
-          <Suspense fallback={<UserDataSkeleton />}>
+          <Suspense fallback={<UserDataSkeleton />} name="user-data">
             <UserData />
           </Suspense>
         </ViewTransition>
         <ViewTransition>
-          <Suspense fallback={<UserStatsSkeleton />}>
+          <Suspense fallback={<UserStatsSkeleton />} name="user-stats">
             <UserStats />
           </Suspense>
         </ViewTransition>
       </div>
       <ViewTransition>
-        <Suspense fallback={<UserRecentActivitySkeleton />}>
+        <Suspense
+          fallback={<UserRecentActivitySkeleton />}
+          name="user-recent-activity"
+        >
           <UserRecentActivity />
         </Suspense>
       </ViewTransition>
