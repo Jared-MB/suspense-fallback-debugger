@@ -1,11 +1,11 @@
 import { CodeHeader, CodeHeaderIcon, CodeHeaderContent } from '@/components/code-header'
 import { IconBrandTypescript } from '@tabler/icons-react'
 
-# Extend your \<DevDropdown/>
+# Extend your \<DevTools/>
 
-**\<DevDropdown/>** was created thinking about extention, so you can extend it with your own components and devtools.
+**\<DevTools/>** was created thinking about extention, so you can extend it with your own components and devtools.
 
-On this guide, we will show you how to extend the \<DevDropdown/> to add a dev bypass feature for role based authentication.
+On this guide, we will show you how to extend the \<DevTools/> to add a dev bypass feature for role based authentication.
 
 Create a new file called `dev-tools.tsx` with the following content:
 
@@ -20,16 +20,16 @@ Create a new file called `dev-tools.tsx` with the following content:
 ```tsx
 "use client"; /* Do not forget to add the "use client" directive if you are using Next.js */
 
-import { DevDropdown } from 'suspense-fallback-debugger';
+import { DevTools as SuspenseDevTools } from 'suspense-fallback-debugger';
 
 export function DevTools() {
   return (
-    <DevDropdown/>
+    <SuspenseDevTools/>
   );
 };
 ```
 
-Then you can update your layout to replace the default \<DevDropdown/> with your custom one:
+Then you can update your layout to replace the default \<DevTools/> with your custom one:
 
 <CodeHeader>
     <CodeHeaderIcon>
@@ -171,14 +171,14 @@ Then added to our **\<DevDropdown/>** in your **\<DevTools/>** as its children:
 ```tsx
 "use client";
 
-import { DevDropdown } from 'suspense-fallback-debugger';
+import { DevTools as SuspenseDevTools } from 'suspense-fallback-debugger';
 import { DevBypass } from '@/components/__dev__/dev-bypass'
 
 export function DevTools() {
   return (
-    <DevDropdown>
+    <SuspenseDevTools>
       <DevByPass/>
-    </DevDropdown>
+    </SuspenseDevTools>
   );
 };
 ```

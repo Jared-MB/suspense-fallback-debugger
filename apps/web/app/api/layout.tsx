@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const components = [
   "Suspense",
-  "DevDropdown",
+  "DevTools",
   "SuspenseContext",
   "DropdownMenu (Components)",
 ];

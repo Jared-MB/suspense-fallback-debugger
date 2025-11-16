@@ -37,24 +37,25 @@ See [react Suspense](https://react.dev/reference/react/Suspense#suspense) docume
 | Name | Type | Required | Description | Default |
 | :--- | :--- | :--- | :--- | :--- |
 | className?* | string | false | Additional CSS classes to apply to the component. | undefined |
+| name? | string | false | Name of the Suspense component so you can easily identify it in the DevTools. | undefined |
 
 \* Sometimes you must pass same children className to the Suspense component so you can have the same style as production, most of the cases
 this is not necessary.
 
-### DevDropdown
+### DevTools
 
 Dropdown menu component where the all `<Suspense/>` rendered are shown.
 
 #### Import
 
 ```tsx
-import { DevDropdown } from 'suspense-fallback-debugger';
+import { DevTools } from 'suspense-fallback-debugger';
 ```
 
 #### Basic Usage
 
 ```tsx
-import { DevDropdown } from 'suspense-fallback-debugger';
+import { DevTools } from 'suspense-fallback-debugger';
 
 export function RootLayout({
   children,
@@ -65,7 +66,7 @@ export function RootLayout({
     <html lang="en">
       <body>
         {children}
-        <DevDropdown />
+        <DevTools />
       </body>
     </html>
   );
@@ -78,6 +79,16 @@ export function RootLayout({
 | :--- | :--- | :--- | :--- | :--- |
 | children? | React.ReactNode | false | Children to render inside the dropdown menu. | undefined |
 | forceRender? | boolean | false | Force render the dropdown menu even if environment is not development. | false |
+
+import { Alert, AlertDescription } from '@workspace/ui/components/alert';
+import { AlertCircle } from 'lucide-react'
+
+<Alert>
+    <AlertCircle />
+    <AlertDescription>
+        Previously named `DevDropdown` which is now deprecated.
+    </AlertDescription>
+</Alert>
 
 ### SuspenseContext
 

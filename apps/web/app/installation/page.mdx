@@ -50,7 +50,7 @@ Import the following into your layout file:
     </CodeHeaderContent>
 </CodeHeader>
 ```tsx
-import { DevDropdown } from "suspense-fallback-debugger";
+import { DevTools } from "suspense-fallback-debugger";
 
 export default function RootLayout({
   children,
@@ -61,7 +61,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         {children}
-        <DevDropdown />
+        <DevTools />
       </body>
     </html>
   );
