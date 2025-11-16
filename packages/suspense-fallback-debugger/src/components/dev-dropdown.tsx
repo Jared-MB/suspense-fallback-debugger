@@ -33,9 +33,29 @@ export const useRender = create<State>()((set) => ({
 
 interface Props {
   children?: React.ReactNode;
+  /**
+   * Whether to force render the component in production and Suspenses even on production builds.
+   */
   forceRender?: boolean;
 }
 
+/**
+ * Contains all the Suspense rendered on the actual page. When interact with the suspenses
+ * you can toggle to render the Suspense fallbacks.
+ */
+export function DevTools({ children, forceRender }: Props) {
+  if (!__IS__DEV__ && !forceRender) return null;
+
+  return (
+    <DropdownSuspense forceRender={forceRender}>{children}</DropdownSuspense>
+  );
+}
+
+/**
+ * @deprecated Use `<DevTools/>` instead.
+ *
+ * We changed the name to `<DevTools/>` to better reflect its purpose and give it a more descriptive name.
+ */
 export function DevDropdown({ children, forceRender }: Props) {
   if (!__IS__DEV__ && !forceRender) return null;
 
