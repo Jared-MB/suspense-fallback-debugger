@@ -1,5 +1,11 @@
 # suspense-fallback-debugger
 
+## 1.2.0
+
+### Minor Changes
+
+- 0dfde40: Feat: now suspenses can be named to easily identify them and optimization on Suspense component on production builds
+
 ## 1.1.4
 
 ### Patch Changes

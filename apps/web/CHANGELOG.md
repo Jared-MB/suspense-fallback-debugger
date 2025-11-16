@@ -1,5 +1,12 @@
 # web
 
+## 0.0.4
+
+### Patch Changes
+
+- Updated dependencies [0dfde40]
+  - suspense-fallback-debugger@1.2.0
+
 ## 0.0.3
 
 ### Patch Changes
