@@ -81,4 +81,68 @@ export function RootLayout({
 
 ### SuspenseContext
 
-### DropdownMenu
+Context provider for the Suspense component.
+
+Can be used to be sure that a custom hook or a component is rendered inside the Suspense component.
+
+#### Import
+
+```tsx
+import { SuspenseContext } from 'suspense-fallback-debugger';
+```
+
+#### Basic Usage
+
+```tsx
+"use client";
+
+import { SuspenseContext } from 'suspense-fallback-debugger';
+import { useContext } from 'react';
+
+export function useCustomHook() {
+
+  const context = useContext(SuspenseContext);
+
+  if (!context) {
+    throw new Error("**useCustomHook** needs to be used inside a Suspense component");
+  }
+
+  const someFunctionThatNeedsSuspense = async () => {
+    // ...
+  };
+
+  return {
+    someFunctionThatNeedsSuspense,
+  }
+}
+```
+
+### DropdownMenu (Components)
+
+We provide a way to extend your devtools so all tools can be on one place.
+
+DropdownMenu are based on `Shadcn/ui` components. You can see the [DropdownMenu](https://ui.shadcn.com/docs/components/dropdown-menu) component for
+more information.
+
+#### Import
+
+```tsx
+import {
+	DropdownMenuGroup,
+	DropdownMenuGroupLabel,
+	DropdownMenuLabel,
+	DropdownMenuSeparator,
+	DropdownMenuSub,
+	DropdownMenuSubContent,
+	DropdownMenuSubTrigger,
+	DropdownMenuRadioGroup,
+	DropdownMenuRadioItem,
+	DropdownMenuPortal,
+} from "suspense-fallback-debugger/dropdown-menu";
+```
+
+#### Basic Usage
+
+import Link from 'next/link'
+
+You can see <Link href='/guides/extend-your-dev-dropdown' className='hover:underline text-primary font-medium'>here</Link> for more information on how to extend your devtools.
