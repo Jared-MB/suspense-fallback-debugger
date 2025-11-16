@@ -49,9 +49,17 @@ const useRenderedSuspenses = create<RenderedSuspensesState>()((set) => ({
       return { hoveredSuspense: id };
     }),
   addSuspense: (id: string) =>
-    set((state) => ({
-      renderedSuspenses: new Set([...state.renderedSuspenses, id]),
-    })),
+    set((state) => {
+      const hasSuspense = state.renderedSuspenses.has(id);
+
+      if (hasSuspense) {
+        throw new Error(`Duplicate Suspense with name **${id}** is detected`);
+      }
+
+      return {
+        renderedSuspenses: new Set([...state.renderedSuspenses, id]),
+      };
+    }),
   removeSuspense: (id: string) =>
     set((state) => {
       const newSet = new Set(state.renderedSuspenses);
@@ -129,12 +137,15 @@ function EnhanceSuspense({
   children,
   fallback,
   className,
+  name,
   ...props
 }: SuspenseProps) {
   const id = useId();
 
-  const isSelected = useIsSelected(id);
-  const isHovered = useIsHovered(id);
+  const suspenseId = name ?? id;
+
+  const isSelected = useIsSelected(suspenseId);
+  const isHovered = useIsHovered(suspenseId);
 
   const addSuspense = useRenderedSuspenses((state) => state.addSuspense);
   const removeSuspense = useRenderedSuspenses((state) => state.removeSuspense);
@@ -143,9 +154,9 @@ function EnhanceSuspense({
   const stableRemoveSuspense = useEffectEvent(removeSuspense);
 
   useEffect(() => {
-    stableAddSuspense(id);
-    return () => stableRemoveSuspense(id);
-  }, [id]);
+    stableAddSuspense(suspenseId);
+    return () => stableRemoveSuspense(suspenseId);
+  }, [suspenseId]);
 
   const computedClassName = useMemo(
     () =>
@@ -159,11 +170,11 @@ function EnhanceSuspense({
   );
 
   return (
-    <ReactSuspense fallback={fallback} {...props} name={id}>
+    <ReactSuspense fallback={fallback} {...props} name={suspenseId}>
       <SuspenseProvider>
         <Tooltip open={isSelected || isHovered}>
           <TooltipTrigger asChild>
-            <div className={computedClassName} id={id}>
+            <div className={computedClassName} id={suspenseId}>
               {isSelected ? (
                 fallback ? (
                   fallback
@@ -180,7 +191,7 @@ function EnhanceSuspense({
             </div>
           </TooltipTrigger>
           <TooltipContent className="font-mono flex flex-col gap-0.5">
-            <div className="font-semibold">Suspense: {id}</div>
+            <div className="font-semibold">Suspense: {suspenseId}</div>
             <div className="text-xs">
               {isSelected ? "🔒 Fallback Forced" : "Click to force fallback"}
             </div>
