@@ -5,10 +5,7 @@ import "@workspace/ui/globals.css";
 import "driver.js/dist/driver.css";
 import { Providers } from "@/components/providers";
 import { DevDropdown } from "suspense-fallback-debugger";
-import {
-  SidebarInset,
-  SidebarProvider,
-} from "@workspace/ui/components/sidebar";
+import { SidebarProvider } from "@workspace/ui/components/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
 import { AppHeader } from "@/components/app-header";
 
@@ -47,12 +44,10 @@ export default function RootLayout({
             }
           >
             <AppSidebar />
-            <SidebarInset>
-              <div className="min-h-dvh">
-                <AppHeader />
-                <div className="p-12">{children}</div>
-              </div>
-            </SidebarInset>
+            <div className="min-h-dvh bg-background w-full">
+              <AppHeader />
+              <div className="p-12">{children}</div>
+            </div>
             <DevDropdown forceRender />
           </SidebarProvider>
         </Providers>
