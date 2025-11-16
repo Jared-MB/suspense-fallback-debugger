@@ -39,6 +39,12 @@ interface Props {
 export function DevDropdown({ children, forceRender }: Props) {
   if (!__IS__DEV__ && !forceRender) return null;
 
+  return (
+    <DropdownSuspense forceRender={forceRender}>{children}</DropdownSuspense>
+  );
+}
+
+function DropdownSuspense({ children, forceRender }: Props) {
   const setRender = useRender((state) => state.setRender);
 
   const [position, setPosition] = useState("bottom-right");
