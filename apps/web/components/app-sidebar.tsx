@@ -40,7 +40,7 @@ const items: { title: string; url: Route }[] = [
 
 export function AppSidebar() {
   return (
-    <Sidebar collapsible="offcanvas" variant="inset">
+    <Sidebar>
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
