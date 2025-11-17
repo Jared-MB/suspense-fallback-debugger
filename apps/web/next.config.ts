@@ -24,7 +24,7 @@ const nextConfig: NextConfig = {
 };
 
 const withBundleAnalyzer = createBundleAnalyzer({
-  enabled: (process.env.ANALYZE = true),
+  enabled: process.env.ANALYZE === "true",
 });
 
 const withMDX = createMDX({
