@@ -39,7 +39,6 @@ export default function RootLayout({
       >
         <Providers>
           <SidebarProvider
-            
             style={
               {
                 "--sidebar-width": "calc(var(--spacing) * 72)",
@@ -48,7 +47,7 @@ export default function RootLayout({
             }
           >
             <AppSidebar />
-            <SidebarInset >
+            <SidebarInset>
               <div className="min-h-dvh">
                 <AppHeader />
                 <div className="p-12">{children}</div>
