@@ -1,5 +1,11 @@
 # suspense-fallback-debugger
 
+## 1.2.2
+
+### Patch Changes
+
+- fc4c880: Change bundler from tsup to tsdown
+
 ## 1.2.1
 
 ### Patch Changes
