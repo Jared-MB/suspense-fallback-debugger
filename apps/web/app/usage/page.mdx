@@ -5,28 +5,27 @@ import { NextSteps } from "./next-steps";
 Once you've installed the package and configured it, you can start using it.
 
 Import it from `suspense-fallback-debugger`:
-
 ```tsx
 import { Suspense } from 'suspense-fallback-debugger';
 ```
 
-Since is based on current `<Suspense/>` react API, it works exactly the same, so you don´t need to worry about new implementation details.
-And always you can check the **[react documentation](https://react.dev/reference/react/Suspense)** for more information.
+Since it's based on React's `<Suspense/>` API, it works exactly the same—you don't need to worry about new implementation details.
 
-When you use it, the `<DevTools/>` component will automatically catches it and you can start showing the fallbacks.
+You can always check the **[React documentation](https://react.dev/reference/react/Suspense)** for more information.
+
+When you use it, the `<DevTools/>` component automatically catches it and displays the fallbacks.
 
 ## Migrate from React Suspense
 
-If you are currently using **\<Suspense/>** from **react**, you can migrate to **\<Suspense/>** from **suspense-fallback-debugger** easily.
+If you're currently using `<Suspense/>` from React, you can migrate to `<Suspense/>` from `suspense-fallback-debugger` easily.
 
-Replace **\<Suspense/>** import from `react` to `suspense-fallback-debugger`
+Replace the `<Suspense/>` import from `react` with `suspense-fallback-debugger`:
 
-Before:
-
+**Before:**
 ```tsx
 import { Suspense } from 'react';
 
-export function YourComponent(){
+export function YourComponent() {
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <AwaitedComponent />
@@ -35,12 +34,11 @@ export function YourComponent(){
 }
 ```
 
-After:
-
+**After:**
 ```tsx
 import { Suspense } from 'suspense-fallback-debugger';
 
-export function YourComponent(){
+export function YourComponent() {
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <AwaitedComponent />
@@ -49,13 +47,11 @@ export function YourComponent(){
 }
 ```
 
-And that's it!
-
-We decided to keep the same API as the original `<Suspense/>` component, so you can migrate your code easily only by changing the import.
+We kept the same API as the original `<Suspense/>` component, so you can migrate your code by only changing the import.
 
 ## Reference
 
 - [React Suspense Documentation](https://react.dev/reference/react/Suspense)
 
-## What's next?
+## What's Next?
 <NextSteps />

@@ -1,11 +1,11 @@
 import { CodeHeader, CodeHeaderIcon, CodeHeaderContent } from '@/components/code-header'
 import { IconBrandTypescript } from '@tabler/icons-react'
 
-# Extend your \<DevTools/>
+# Extend Your DevTools
 
-**\<DevTools/>** was created thinking about extention, so you can extend it with your own components and devtools.
+DevTools was designed for extensibility, allowing you to add your own components and development tools.
 
-On this guide, we will show you how to extend the \<DevTools/> to add a dev bypass feature for role based authentication.
+In this guide, we'll show you how to extend DevTools to add a dev bypass feature for role-based authentication.
 
 Create a new file called `dev-tools.tsx` with the following content:
 
@@ -18,7 +18,7 @@ Create a new file called `dev-tools.tsx` with the following content:
     </CodeHeaderContent>
 </CodeHeader>
 ```tsx
-"use client"; /* Do not forget to add the "use client" directive if you are using Next.js */
+"use client"; /* Add the "use client" directive if you're using Next.js */
 
 import { DevTools as SuspenseDevTools } from 'suspense-fallback-debugger';
 
@@ -29,7 +29,7 @@ export function DevTools() {
 };
 ```
 
-Then you can update your layout to replace the default \<DevTools/> with your custom one:
+Update your layout to replace the default DevTools with your custom one:
 
 <CodeHeader>
     <CodeHeaderIcon>
@@ -40,7 +40,7 @@ Then you can update your layout to replace the default \<DevTools/> with your cu
     </CodeHeaderContent>
 </CodeHeader>
 ```tsx
-import { DevTools } from "@/components/dev-tools"; /* or where you have it */
+import { DevTools } from "@/components/dev-tools"; /* Or wherever you have it */
 
 export default function RootLayout({
   children,
@@ -58,8 +58,7 @@ export default function RootLayout({
 }
 ```
 
-This will show the same devtools as before, but since is from a different file,
-you can easily customize it to fit your needs and you can use client components.
+This displays the same DevTools as before, but since it's in a separate file, you can easily customize it to fit your needs and use client components.
 
 import { Alert, AlertDescription } from '@workspace/ui/components/alert';
 import { AlertCircle } from 'lucide-react'
@@ -67,11 +66,11 @@ import { AlertCircle } from 'lucide-react'
 <Alert>
     <AlertCircle />
     <AlertDescription>
-        **suspense-fallback-debugger** was created using **Shadcn UI**, so we also provide dropdown menu components to customize it.
+        `suspense-fallback-debugger` was built using Shadcn UI, so we also provide dropdown menu components for customization.
     </AlertDescription>
 </Alert>
 
-So let's add a component named **DevBypass** to start extending it.
+Add a component named **DevBypass** to extend it:
 
 <CodeHeader>
     <CodeHeaderIcon>
@@ -85,16 +84,16 @@ So let's add a component named **DevBypass** to start extending it.
 "use client"
 
 import {
-	DropdownMenuGroup,
-	DropdownMenuGroupLabel,
-	DropdownMenuLabel,
-	DropdownMenuSeparator,
-	DropdownMenuSub,
-	DropdownMenuSubContent,
-	DropdownMenuSubTrigger,
-	DropdownMenuRadioGroup,
-	DropdownMenuRadioItem,
-	DropdownMenuPortal,
+  DropdownMenuGroup,
+  DropdownMenuGroupLabel,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuPortal,
 } from "suspense-fallback-debugger/dropdown-menu";
 import { useState, useEffect } from 'react'
 
@@ -110,55 +109,54 @@ function DevBypass() {
   const [role, setRole] = useState<RoleType | undefined>(undefined);
 
   const handleRoleChange = async (role: RoleType) => {
-  	await setDevSessionRole(role);
-  	setRole(role);
+    await setDevSessionRole(role);
+    setRole(role);
   };
 
   useEffect(() => {
-  	getDevSessionRole().then((role) => {
-  		if (!role) {
-  			setRole(session?.user.role);
-  			return;
-  		}
+    getDevSessionRole().then((role) => {
+      if (!role) {
+        setRole(session?.user.role);
+        return;
+      }
 
-  		setRole(role);
-  	});
+      setRole(role);
+    });
   }, [session?.user]);
 
   return (
-  	<DropdownMenuGroup>
-  		<DropdownMenuGroupLabel>Debug</DropdownMenuGroupLabel>
-  		<DropdownMenuSub>
-  			<DropdownMenuSubTrigger>Role</DropdownMenuSubTrigger>
-  			<DropdownMenuPortal>
-  				<DropdownMenuSubContent>
-  					<DropdownMenuGroup>
-  						<DropdownMenuLabel>Set role as</DropdownMenuLabel>
-  						<DropdownMenuSeparator />
-  						<DropdownMenuRadioGroup
-  							value={role}
-  							onValueChange={(role) => handleRoleChange(role as RoleType)}
-  						>
-  							<DropdownMenuRadioItem value={Role.ADMIN}>
-  								Admin
-  							</DropdownMenuRadioItem>
-  							<DropdownMenuRadioItem value={Role.USER}>
-  							    User
-  							</DropdownMenuRadioItem>
-  						</DropdownMenuRadioGroup>
-  					</DropdownMenuGroup>
-  				</DropdownMenuSubContent>
-  			</DropdownMenuPortal>
-  		</DropdownMenuSub>
-  	</DropdownMenuGroup>
+    <DropdownMenuGroup>
+      <DropdownMenuGroupLabel>Debug</DropdownMenuGroupLabel>
+      <DropdownMenuSub>
+        <DropdownMenuSubTrigger>Role</DropdownMenuSubTrigger>
+        <DropdownMenuPortal>
+          <DropdownMenuSubContent>
+            <DropdownMenuGroup>
+              <DropdownMenuLabel>Set Role As</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuRadioGroup
+                value={role}
+                onValueChange={(role) => handleRoleChange(role as RoleType)}
+              >
+                <DropdownMenuRadioItem value={Role.ADMIN}>
+                  Admin
+                </DropdownMenuRadioItem>
+                <DropdownMenuRadioItem value={Role.USER}>
+                  User
+                </DropdownMenuRadioItem>
+              </DropdownMenuRadioGroup>
+            </DropdownMenuGroup>
+          </DropdownMenuSubContent>
+        </DropdownMenuPortal>
+      </DropdownMenuSub>
+    </DropdownMenuGroup>
   );
 }
 ```
 
-All the dropdown menu components are exported from `suspense-fallback-debugger/dropdown-menu`. These components are
-the same as the ones from shadcn. So you can check the [Shadcn/DropdownMenu](https://ui.shadcn.com/docs/components/dropdown-menu) documentation for more information.
+All dropdown menu components are exported from `suspense-fallback-debugger/dropdown-menu`. These components are the same as those from Shadcn UI. See the [Shadcn DropdownMenu](https://ui.shadcn.com/docs/components/dropdown-menu) documentation for more information.
 
-Then added to our **\<DevDropdown/>** in your **\<DevTools/>** as its children:
+Add this to your DevTools as its children:
 
 <CodeHeader>
     <CodeHeaderIcon>
@@ -177,25 +175,20 @@ import { DevBypass } from '@/components/__dev__/dev-bypass'
 export function DevTools() {
   return (
     <SuspenseDevTools>
-      <DevByPass/>
+      <DevBypass/>
     </SuspenseDevTools>
   );
 };
 ```
 
-And that's it!
+Since the dropdown only renders in development environments, you can add as many dev tools as needed to improve your development experience.
 
-Since the dropdown will only be rendered on development environment, you can add as many dev tools as you need to make your development experience more efficient.
+## Troubleshooting
 
-## Troubleshootings
+### Why Can't I Use My Shadcn Dropdown Menu to Extend My Dev Dropdown Menu?
 
-### Why I cannot use my shadcn dropdown menu to extend my dev dropdown menu?
-
-Despite you have already installed your dropdown menu from shadcn, you cannot use it to extend your dev dropdown menu.
-This is because a conflict with context api, dropdown menu components will search for the nearest context provider,
-and since they are imported from different packages context can't match and will throw an error. That's the reason why we
-export also the dropdown menu components.
+Even if you've already installed the dropdown menu from Shadcn UI, you can't use it to extend your dev dropdown menu. This is due to a conflict with the Context API. Dropdown menu components search for the nearest context provider, and since they're imported from different packages, the context can't match and will throw an error. That's why we also export the dropdown menu components.
 
 ## Reference
 
-- [Shadcn/DropdownMenu](https://ui.shadcn.com/docs/components/dropdown-menu)
+- [Shadcn DropdownMenu](https://ui.shadcn.com/docs/components/dropdown-menu)

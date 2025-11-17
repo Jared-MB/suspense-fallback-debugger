@@ -1,11 +1,8 @@
 import { Install } from '@/components/install'
 import { Alert, AlertDescription } from "@workspace/ui/components/alert";
 import { NextSteps } from './next-steps';
-
 import { CodeHeader, CodeHeaderIcon, CodeHeaderContent } from '@/components/code-header'
 import { IconBrandTypescript, IconFileTypeCss } from '@tabler/icons-react'
-
-
 import { AlertCircle } from "lucide-react";
 
 # Installation
@@ -16,13 +13,13 @@ Install the package using your preferred package manager:
 
 ## Requirements
 
-Before you begin, make sure you have the following installed:
+Before you begin, ensure you have the following installed:
 
-- TailwindCSS@4
+- Tailwind CSS 4
 
 ## Styling
 
-Add the following code in your `global.css` file:
+Add the following code to your `globals.css` file:
 
 <CodeHeader>
     <CodeHeaderIcon>
@@ -33,11 +30,10 @@ Add the following code in your `global.css` file:
     </CodeHeaderContent>
 </CodeHeader>
 ```css
-@source "../node_modules/suspense-fallback-debugger"; /* adjust the path as needed */
+@source "../node_modules/suspense-fallback-debugger"; /* Adjust the path as needed */
 ```
 
-
-## Add to your layout
+## Add to Your Layout
 
 Import the following into your layout file:
 
@@ -68,7 +64,7 @@ export default function RootLayout({
 }
 ```
 
-That's it! You're now ready to start using **suspense-fallback-debugger** in your project.
+You're now ready to start using **suspense-fallback-debugger** in your project.
 
-## What's next?
+## What's Next?
 <NextSteps />

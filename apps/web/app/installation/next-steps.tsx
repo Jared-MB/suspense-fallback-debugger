@@ -30,7 +30,7 @@ export function NextSteps() {
             <div className="flex flex-col gap-2">
               <CardTitle>API Reference</CardTitle>
               <CardDescription className="text-pretty">
-                A deep dive into the package API.
+                Explore the complete package API.
               </CardDescription>
             </div>
           </CardContent>

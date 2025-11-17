@@ -6,30 +6,29 @@ import {
   CardTitle,
 } from "@workspace/ui/components/card";
 import Link from "next/link";
-
 import { SlowComponent } from "@/components/slow-component";
 import { Tour } from "@/components/tour";
 
 export default function Page() {
   return (
     <main>
-      <h1 className="text-3xl font-medium font-mono text-balance ">
+      <h1 className="text-3xl font-medium font-mono text-balance">
         Suspense Fallback Debugger
       </h1>
       <p className="text-muted-foreground text-pretty mt-4">
-        Suspense Fallback Debugger is a development tool to help you debug React
-        Suspense fallbacks in an easy, efficient and beautiful way.
+        A development tool to help you debug React Suspense fallbacks in an
+        easy, efficient, and beautiful way.
       </p>
       <section className="flex flex-col gap-4">
-        <h3 className="text-2xl font-medium mt-6">Basic example</h3>
+        <h3 className="text-2xl font-medium mt-6">Basic Example</h3>
         <p>
-          The component below was fragmented to simulate a slow loading
-          component. You can see the fallbacks in action by clicking <Tour />.
+          The component below was fragmented to simulate a slow-loading
+          component. See the fallbacks in action by clicking <Tour />.
         </p>
         <SlowComponent />
       </section>
       <section className="flex flex-col gap-4">
-        <h3 className="text-2xl font-medium mt-6">Whats next?</h3>
+        <h3 className="text-2xl font-medium mt-6">What's Next?</h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <Link className="group" href="/installation">
             <Card className="h-full group-hover:bg-accent transition-colors duration-100">
@@ -38,7 +37,7 @@ export default function Page() {
                 <div className="flex flex-col gap-2">
                   <CardTitle>Installation</CardTitle>
                   <CardDescription className="text-pretty">
-                    Install and configure the package.
+                    Install & configure the package.
                   </CardDescription>
                 </div>
               </CardContent>
@@ -64,7 +63,7 @@ export default function Page() {
                 <div className="flex flex-col gap-2">
                   <CardTitle>API Reference</CardTitle>
                   <CardDescription className="text-pretty">
-                    A deep dive into the package API.
+                    Explore the complete package API.
                   </CardDescription>
                 </div>
               </CardContent>

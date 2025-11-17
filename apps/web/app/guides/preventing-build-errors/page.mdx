@@ -1,17 +1,15 @@
 import { CodeHeader, CodeHeaderIcon, CodeHeaderContent } from '@/components/code-header'
 import { IconBrandTypescript } from '@tabler/icons-react'
 
-# Preventing build errors
+# Preventing Build Errors
 
-Some API's need a Suspense boundary to work correctly like `useSearchParams` from **next**, sometimes
-this hook can be used without any error on development mode, but once you compile the code,
-it will throw an error due to missing Suspense boundary.
+Some APIs need a Suspense boundary to work correctly, like `useSearchParams` from Next.js. Sometimes this hook can be used without errors in development mode, but once you compile the code, it will throw an error due to a missing Suspense boundary.
 
-To prevent this issue, you can implement your custom hooks with the `SuspenseContext` provided by `suspense-fallback-debugger`.
+To prevent this issue, implement your custom hooks with the `SuspenseContext` provided by `suspense-fallback-debugger`.
 
-For example, let's create a `useSearch` hook to handle the url query parameters.
+For example, create a `useSearch` hook to handle URL query parameters.
 
-First create a `use-search.ts` file:
+First, create a `use-search.ts` file:
 
 <CodeHeader>
     <CodeHeaderIcon>
@@ -30,12 +28,12 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useDebouncedCallback } from "use-debounce";
 
 /**
- * This hook allows to handle URL state for search queries
- * preserving other query parameters and actual pathname
+ * This hook allows you to handle URL state for search queries
+ * while preserving other query parameters and the actual pathname.
  *
- * @param name - The name of the search parameter, this will be placed on the URL as a query parameter
- * @param options - Options to configure the search behavior
- * @param options.debounceTime - The debounce time (time to wait before updating the URL) in milliseconds (**default: 400**)
+ * @param name - The name of the search parameter. This will be placed in the URL as a query parameter.
+ * @param options - Options to configure the search behavior.
+ * @param options.debounceTime - The debounce time (time to wait before updating the URL) in milliseconds (default: 400).
  */
 export function useSearch(
     name: string,
@@ -70,9 +68,9 @@ export function useSearch(
 }
 ```
 
-This hook will handle search queries with a debounce time but we still have the problem with the `useSearchParams` hook not being wrapped in a `Suspense` boundary.
+This hook handles search queries with a debounce time, but we still have the problem with the `useSearchParams` hook not being wrapped in a `Suspense` boundary.
 
-So let's fix it, import the `SuspenseContext` from `suspense-fallback-debugger` & read it with the `useContext` react hook.
+To fix it, import the `SuspenseContext` from `suspense-fallback-debugger` and read it with the `useContext` React hook.
 
 <CodeHeader>
     <CodeHeaderIcon>
@@ -95,13 +93,13 @@ import { SuspenseContext } from "suspense-fallback-debugger";
 import { __IS__DEV__ } from "@/constants/isDev";
 
 /**
- * This hook allows to handle URL state for search queries
- * preserving other query parameters and actual pathname
+ * This hook allows you to handle URL state for search queries
+ * while preserving other query parameters and the actual pathname.
  *
- * @param name - The name of the search parameter, this will be placed on the URL as a query parameter
- * @param options - Options to configure the search behavior
- * @param options.debounceTime - The debounce time (time to wait before updating the URL) in milliseconds (**default: 400**)
- * @param options.clearOnValue - The value that will clear the search parameter from the URL
+ * @param name - The name of the search parameter. This will be placed in the URL as a query parameter.
+ * @param options - Options to configure the search behavior.
+ * @param options.debounceTime - The debounce time (time to wait before updating the URL) in milliseconds (default: 400).
+ * @param options.clearOnValue - The value that will clear the search parameter from the URL.
  */
 export function useSearch(
     name: string,
@@ -112,23 +110,22 @@ export function useSearch(
 ) {
 
    /**
-    *  Read it on the top of the component so will be used to check if the component is used within a <Suspense/> component
+    * Read it at the top of the component to check if the component is used within a <Suspense/> component.
     */
     const context = useContext(SuspenseContext);
 
     /**
-     * We only care if the component is used within a <Suspense/> component on development mode
-     * so when building for production, we don't need to check for this since we already handled on development mode
+     * We only check if the component is used within a <Suspense/> component in development mode.
+     * When building for production, we don't need to check since we already handled it in development mode.
      */
     if (__IS__DEV__ && !context) {
         throw new Error(
-            `**useSearch("${name}")** must be used within a <Suspense/> component,
-            you must import it from 'suspense-fallback-debugger'`,
+            `useSearch("${name}") must be used within a <Suspense/> component. Import it from 'suspense-fallback-debugger'.`,
         );
     }
 
     /**
-     * All the rest of the hook can stay the same
+     * All the rest of the hook can stay the same.
      */
 
     const router = useRouter();
@@ -157,12 +154,9 @@ export function useSearch(
 
     return { search };
 }
-
 ```
 
-And thats it!
-
-This way, we ensure that the search functionality is only used within a `<Suspense/>` component, and would'nt throw an error on building.
+This ensures the search functionality is only used within a `<Suspense/>` component and won't throw an error when building.
 
 import { Alert, AlertDescription } from '@workspace/ui/components/alert';
 import { AlertCircle } from 'lucide-react'
@@ -170,7 +164,6 @@ import { AlertCircle } from 'lucide-react'
 <Alert>
     <AlertCircle />
     <AlertDescription>
-        Note that if you wrap the `useSearch` hook with the vanilla react `<Suspense/>` component, the hook even still throw an error since
-        its looking for the suspense context, so you must import all your `<Suspense/>` from 'suspense-fallback-debugger'.
+        If you wrap the `useSearch` hook with the vanilla React `<Suspense/>` component, the hook will still throw an error since it's looking for the Suspense context. Import all your `<Suspense/>` components from `suspense-fallback-debugger`.
     </AlertDescription>
 </Alert>

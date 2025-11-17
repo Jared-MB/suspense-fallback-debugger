@@ -1,6 +1,6 @@
 # API Reference
 
-Here you can find a detailed API reference for the components used in the application.
+Find a detailed API reference for the components used in the application.
 
 ## Components
 
@@ -30,30 +30,27 @@ export function MyComponent() {
 
 #### Props
 
-See [react Suspense](https://react.dev/reference/react/Suspense#suspense) documentation for more details.
+See [React Suspense](https://react.dev/reference/react/Suspense#suspense) documentation for more details.
 
 #### Additional Props
 
 | Name | Type | Required | Description | Default |
 | :--- | :--- | :--- | :--- | :--- |
 | className?* | string | false | Additional CSS classes to apply to the component. | undefined |
-| name? | string | false | Name of the Suspense component so you can easily identify it in the DevTools. | undefined |
+| name? | string | false | Name of the Suspense component to easily identify it in the DevTools. | undefined |
 
-\* Sometimes you must pass same children className to the Suspense component so you can have the same style as production, most of the cases
-this is not necessary.
+\* In some cases, pass the same children className to the Suspense component to maintain the same style as production. This is not necessary in most cases.
 
 ### DevTools
 
-Dropdown menu component where the all `<Suspense/>` rendered are shown.
+Dropdown menu component that displays all rendered `<Suspense/>` components.
 
 #### Import
-
 ```tsx
 import { DevTools } from 'suspense-fallback-debugger';
 ```
 
 #### Basic Usage
-
 ```tsx
 import { DevTools } from 'suspense-fallback-debugger';
 
@@ -78,7 +75,7 @@ export function RootLayout({
 | Name | Type | Required | Description | Default |
 | :--- | :--- | :--- | :--- | :--- |
 | children? | React.ReactNode | false | Children to render inside the dropdown menu. | undefined |
-| forceRender? | boolean | false | Force render the dropdown menu even if environment is not development. | false |
+| forceRender? | boolean | false | Force render the dropdown menu even if the environment is not development. | false |
 
 import { Alert, AlertDescription } from '@workspace/ui/components/alert';
 import { AlertCircle } from 'lucide-react'
@@ -86,7 +83,7 @@ import { AlertCircle } from 'lucide-react'
 <Alert>
     <AlertCircle />
     <AlertDescription>
-        Previously named `DevDropdown` which is now deprecated.
+        Previously named `DevDropdown`, which is now deprecated.
     </AlertDescription>
 </Alert>
 
@@ -94,7 +91,7 @@ import { AlertCircle } from 'lucide-react'
 
 Context provider for the Suspense component.
 
-Can be used to be sure that a custom hook or a component is rendered inside the Suspense component.
+Use this to ensure a custom hook or component is rendered inside the Suspense component.
 
 #### Import
 
@@ -111,11 +108,10 @@ import { SuspenseContext } from 'suspense-fallback-debugger';
 import { useContext } from 'react';
 
 export function useCustomHook() {
-
   const context = useContext(SuspenseContext);
 
   if (!context) {
-    throw new Error("**useCustomHook** needs to be used inside a Suspense component");
+    throw new Error("**useCustomHook** must be used inside a Suspense component");
   }
 
   const someFunctionThatNeedsSuspense = async () => {
@@ -130,25 +126,24 @@ export function useCustomHook() {
 
 ### DropdownMenu (Components)
 
-We provide a way to extend your devtools so all tools can be on one place.
+Extend your DevTools so all tools are in one place.
 
-DropdownMenu are based on `Shadcn/ui` components. You can see the [DropdownMenu](https://ui.shadcn.com/docs/components/dropdown-menu) component for
-more information.
+DropdownMenu components are based on Shadcn/ui components. See the [DropdownMenu](https://ui.shadcn.com/docs/components/dropdown-menu) component for more information.
 
 #### Import
 
 ```tsx
 import {
-	DropdownMenuGroup,
-	DropdownMenuGroupLabel,
-	DropdownMenuLabel,
-	DropdownMenuSeparator,
-	DropdownMenuSub,
-	DropdownMenuSubContent,
-	DropdownMenuSubTrigger,
-	DropdownMenuRadioGroup,
-	DropdownMenuRadioItem,
-	DropdownMenuPortal,
+  DropdownMenuGroup,
+  DropdownMenuGroupLabel,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuPortal,
 } from "suspense-fallback-debugger/dropdown-menu";
 ```
 
@@ -156,4 +151,4 @@ import {
 
 import Link from 'next/link'
 
-You can see <Link href='/guides/extend-your-dev-dropdown' className='hover:underline text-primary font-medium'>here</Link> for more information on how to extend your devtools.
+See <Link href='/guides/extend-your-dev-dropdown' className='hover:underline text-primary font-medium'>Extend Your DevTools</Link> for more information.
