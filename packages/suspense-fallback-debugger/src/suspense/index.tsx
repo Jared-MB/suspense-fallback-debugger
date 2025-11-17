@@ -12,8 +12,6 @@ import {
 
 import { create } from "zustand";
 
-import { ChevronRight } from "lucide-react";
-
 import {
   DropdownMenuGroup,
   DropdownMenuGroupLabel,
@@ -247,8 +245,23 @@ export function DropdownSuspenseContent() {
               isSelected && "bg-primary/10"
             )}
           >
-            {/* @ts-ignore I don't know why its not recognizing the component */}
-            {isSelected && <ChevronRight className="text-primary" />}
+            {isSelected && (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="lucide lucide-chevron-right-icon lucide-chevron-right text-primary"
+              >
+                <title>Chevron Right</title>
+                <path d="m9 18 6-6-6-6" />
+              </svg>
+            )}
             {id}
           </DropdownMenuItem>
         ))
