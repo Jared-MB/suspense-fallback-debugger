@@ -2,22 +2,22 @@
   "name": "suspense-fallback-debugger",
   "version": "1.2.1",
   "description": "Suspense Fallback Debugger for React",
-  "main": "dist/index.js",
-  "module": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/index.mjs",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.mts",
   "private": false,
   "scripts": {
-    "dev": "tsup src/index.ts src/components/dropdown-menu.tsx --format cjs,esm --dts --watch",
-    "build": "tsup src/index.ts src/components/dropdown-menu.tsx --format cjs,esm --dts"
+    "dev": "tsdown --watch",
+    "build": "tsdown"
   },
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "default": "./dist/index.js"
+      "types": "./dist/index.d.mts",
+      "default": "./dist/index.mjs"
     },
     "./dropdown-menu": {
-      "types": "./dist/components/dropdown-menu.d.ts",
-      "default": "./dist/components/dropdown-menu.js"
+      "types": "./dist/components/dropdown-menu.d.mts",
+      "default": "./dist/components/dropdown-menu.mjs"
     }
   },
   "files": [
@@ -34,12 +34,14 @@
     "zustand": "5.0.7"
   },
   "devDependencies": {
+    "@rollup/plugin-babel": "6.1.0",
     "@types/node": "22.15.3",
     "@types/react": "19.2.4",
     "@types/react-dom": "19.2.3",
     "@workspace/typescript-config": "workspace:*",
     "@workspace/ui": "workspace:*",
-    "tsup": "8.5.0",
+    "babel-plugin-react-compiler": "1.0.0",
+    "tsdown": "0.16.5",
     "typescript": "5.9.2"
   },
   "keywords": [],
