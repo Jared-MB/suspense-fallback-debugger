@@ -3,6 +3,8 @@ import pluginBabel from "@rollup/plugin-babel";
 
 export default defineConfig({
   entry: ["./src/index.ts", "./src/components/dropdown-menu.tsx"],
+  minify: true,
+  external: ["react", "react-dom"],
   plugins: [
     pluginBabel({
       babelHelpers: "bundled",
