@@ -1,5 +1,11 @@
 # suspense-fallback-debugger
 
+## 1.2.3
+
+### Patch Changes
+
+- d4fed42: reduce package size
+
 ## 1.2.2
 
 ### Patch Changes
