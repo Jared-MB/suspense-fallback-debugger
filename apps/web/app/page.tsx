@@ -8,15 +8,10 @@ import {
 import Link from "next/link";
 import { SlowComponent } from "@/components/slow-component";
 import { Tour } from "@/components/tour";
-import { Search } from "@/components/search";
-import { Suspense } from "suspense-fallback-debugger";
 
 export default function Page() {
   return (
     <main>
-      <Suspense>
-        <Search />
-      </Suspense>
       <h1 className="text-3xl font-medium font-mono text-balance">
         Suspense Fallback Debugger
       </h1>
