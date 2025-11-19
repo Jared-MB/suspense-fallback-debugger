@@ -2,24 +2,22 @@
 
 import { useState, useEffect, useMemo } from "react";
 import { cn } from "@workspace/ui/lib/utils";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-  DropdownMenuGroup,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
-  DropdownMenuRadioGroup,
-  DropdownMenuRadioItem,
-  DropdownMenuPortal,
-  DropdownMenuGroupLabel,
-  DropdownMenuItem,
-} from "@workspace/ui/components/dropdown-menu";
+
+import { Menu } from "@base-ui-components/react";
 import { Button } from "@workspace/ui/components/button";
 import { useRenderedSuspenses } from "src/suspense/use-rendered-suspenses";
+import {
+  MenuContent,
+  MenuGroup,
+  MenuGroupLabel,
+  MenuItem,
+  MenuLabel,
+  MenuRadioGroup,
+  MenuRadioItem,
+  MenuSeparator,
+  MenuSub,
+  MenuSubTrigger,
+} from "./dropdown-menu";
 
 interface Props {
   children?: React.ReactNode;
@@ -51,68 +49,60 @@ export function DropdownSuspense({ children }: Props) {
   }, []);
 
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button
-          variant="outline"
-          size="icon"
-          data-custom-id="suspense-debugger:button"
-          className={cn(
-            "rounded-full m-1 fixed size-10 font-mono text-lg font-semibold shadow pointer-events-auto z-999999",
-            {
-              "top-2 right-2": position === "top-right",
-              "top-2 left-2": position === "top-left",
-              "bottom-2 right-2": position === "bottom-right",
-              "bottom-2 left-2": position === "bottom-left",
-            }
-          )}
-        >
-          K
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent>
-        <DropdownMenuLabel>DevTools</DropdownMenuLabel>
-        <DropdownMenuSeparator />
+    <Menu.Root>
+      <Menu.Trigger
+        render={
+          <Button
+            variant="outline"
+            size="icon"
+            data-custom-id="suspense-debugger:button"
+            className={cn(
+              "rounded-full m-1 fixed size-10 font-mono text-lg font-semibold shadow pointer-events-auto z-999999",
+              {
+                "top-2 right-2": position === "top-right",
+                "top-2 left-2": position === "top-left",
+                "bottom-2 right-2": position === "bottom-right",
+                "bottom-2 left-2": position === "bottom-left",
+              }
+            )}
+          >
+            K
+          </Button>
+        }
+      />
+      <MenuContent>
+        <MenuLabel>DevTools</MenuLabel>
+        <MenuSeparator />
         <DropdownSuspenseContent />
-        <DropdownMenuSeparator />
+        <MenuSeparator />
         {children ? (
           <>
             {children}
-            <DropdownMenuSeparator />
+            <MenuSeparator />
           </>
         ) : null}
-        <DropdownMenuGroup>
-          <DropdownMenuSub>
-            <DropdownMenuSubTrigger>Preferences</DropdownMenuSubTrigger>
-            <DropdownMenuPortal>
-              <DropdownMenuSubContent>
-                <DropdownMenuGroup>
-                  <DropdownMenuLabel>Panel Position</DropdownMenuLabel>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuRadioGroup
-                    value={position}
-                    onValueChange={handlePositionChange}
-                  >
-                    <DropdownMenuRadioItem value="top-left">
-                      Top - Left
-                    </DropdownMenuRadioItem>
-                    <DropdownMenuRadioItem value="top-right">
-                      Top - Right
-                    </DropdownMenuRadioItem>
-                    <DropdownMenuRadioItem value="bottom-left">
-                      Bottom - Left
-                    </DropdownMenuRadioItem>
-                    <DropdownMenuRadioItem value="bottom-right">
-                      Bottom - Right
-                    </DropdownMenuRadioItem>
-                  </DropdownMenuRadioGroup>
-                </DropdownMenuGroup>
-              </DropdownMenuSubContent>
-            </DropdownMenuPortal>
-          </DropdownMenuSub>
-        </DropdownMenuGroup>
-      </DropdownMenuContent>
-    </DropdownMenu>
+        <MenuSub>
+          <MenuSubTrigger>Preferences</MenuSubTrigger>
+          <MenuContent>
+            <MenuGroup>
+              <MenuGroupLabel>Panel Position</MenuGroupLabel>
+              <MenuSeparator />
+              <MenuRadioGroup
+                value={position}
+                onValueChange={handlePositionChange}
+              >
+                <MenuRadioItem value="top-left">Top - Left</MenuRadioItem>
+                <MenuRadioItem value="top-right">Top - Right</MenuRadioItem>
+                <MenuRadioItem value="bottom-left">Bottom - Left</MenuRadioItem>
+                <MenuRadioItem value="bottom-right">
+                  Bottom - Right
+                </MenuRadioItem>
+              </MenuRadioGroup>
+            </MenuGroup>
+          </MenuContent>
+        </MenuSub>
+      </MenuContent>
+    </Menu.Root>
   );
 }
 
@@ -144,11 +134,11 @@ function DropdownSuspenseContent() {
   );
 
   return (
-    <DropdownMenuGroup className="flex flex-col gap-1">
-      <DropdownMenuGroupLabel>Rendered Suspenses</DropdownMenuGroupLabel>
+    <MenuGroup className="flex flex-col gap-1">
+      <MenuGroupLabel>Rendered Suspenses</MenuGroupLabel>
       {visibleSuspenses.length > 0 ? (
         visibleSuspenses.map(({ id, isSelected }) => (
-          <DropdownMenuItem
+          <MenuItem
             key={id}
             onMouseEnter={() => setHoveredSuspense(id)}
             onMouseLeave={() => setHoveredSuspense(null)}
@@ -156,10 +146,7 @@ function DropdownSuspenseContent() {
               setSelectedSuspense(id);
               setHoveredSuspense(null);
             }}
-            className={cn(
-              "flex items-center gap-2",
-              isSelected && "bg-primary/10"
-            )}
+            className={isSelected ? "bg-primary/10" : ""}
           >
             {isSelected && (
               <svg
@@ -179,10 +166,10 @@ function DropdownSuspenseContent() {
               </svg>
             )}
             {id}
-          </DropdownMenuItem>
+          </MenuItem>
         ))
       ) : (
-        <DropdownMenuItem disabled className="flex flex-col gap-1">
+        <MenuItem disabled>
           <span>No Suspenses Rendered</span>
           <small>
             If you have one, check if its imported from
@@ -190,8 +177,8 @@ function DropdownSuspenseContent() {
               <code className="font-mono">suspense-fallback-debugger</code>
             </pre>
           </small>
-        </DropdownMenuItem>
+        </MenuItem>
       )}
-    </DropdownMenuGroup>
+    </MenuGroup>
   );
 }

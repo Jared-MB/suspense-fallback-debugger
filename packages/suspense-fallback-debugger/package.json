@@ -19,6 +19,14 @@
       "types": "./dist/components/dropdown-menu.d.mts",
       "default": "./dist/components/dropdown-menu.mjs"
     },
+    "./context": {
+      "types": "./dist/suspense/context.d.mts",
+      "default": "./dist/suspense/context.mjs"
+    },
+    "./dev": {
+      "types": "./dist/dev.d.mts",
+      "default": "./dist/dev.mjs"
+    },
     "./internal": {
       "types": "./dist/internal/index.d.mts",
       "default": "./dist/internal/index.mjs"
@@ -34,7 +42,7 @@
     "react-dom": "19.2.0"
   },
   "dependencies": {
-    "@radix-ui/react-dropdown-menu": "2.1.16",
+    "@base-ui-components/react": "1.0.0-beta.6",
     "zustand": "5.0.7"
   },
   "devDependencies": {
@@ -50,5 +58,6 @@
   },
   "keywords": [],
   "author": "Jared-MB",
-  "license": "ISC"
+  "license": "ISC",
+  "sideEffects": false
 }

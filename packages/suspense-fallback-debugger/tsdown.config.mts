@@ -4,6 +4,8 @@ import pluginBabel from "@rollup/plugin-babel";
 export default defineConfig({
   entry: [
     "./src/index.ts",
+    "./src/dev.ts",
+    "./src/suspense/context.tsx",
     "./src/components/dropdown-menu.tsx",
     "./src/internal/index.ts",
   ],

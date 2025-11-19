@@ -36,7 +36,8 @@
     "react-dom": "19.2.0",
     "rehype-highlight": "7.0.2",
     "remark-gfm": "4.0.1",
-    "suspense-fallback-debugger": "workspace:*"
+    "suspense-fallback-debugger": "workspace:*",
+    "use-debounce": "10.0.6"
   },
   "devDependencies": {
     "@types/node": "20.19.9",
