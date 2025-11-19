@@ -1,4 +1,5 @@
 "use client";
 
-export { Suspense, SuspenseContext } from "./suspense";
-export { DevDropdown, DevTools } from "./components/dev-dropdown";
+export { SuspenseContext } from "./suspense/enhance-suspense";
+export { Suspense } from "./suspense";
+export { DevDropdown, DevTools } from "./components/dev-tools";

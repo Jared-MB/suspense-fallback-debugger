@@ -4,7 +4,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "@workspace/ui/globals.css";
 import "driver.js/dist/driver.css";
 import { Providers } from "@/components/providers";
-import { DevDropdown } from "suspense-fallback-debugger";
+import { DevTools } from "suspense-fallback-debugger";
 import {
   SidebarInset,
   SidebarProvider,
@@ -53,7 +53,7 @@ export default function RootLayout({
                 <div className="p-12">{children}</div>
               </div>
             </SidebarInset>
-            <DevDropdown forceRender />
+            <DevTools />
           </SidebarProvider>
         </Providers>
       </body>

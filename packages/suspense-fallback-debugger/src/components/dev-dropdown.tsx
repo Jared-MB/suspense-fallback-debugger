@@ -1,7 +1,6 @@
 "use client";
 
-import { __IS__DEV__ } from "../lib/__is__dev__";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { cn } from "@workspace/ui/lib/utils";
 import {
   DropdownMenu,
@@ -16,57 +15,27 @@ import {
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
   DropdownMenuPortal,
+  DropdownMenuGroupLabel,
+  DropdownMenuItem,
 } from "@workspace/ui/components/dropdown-menu";
 import { Button } from "@workspace/ui/components/button";
-import { DropdownSuspenseContent } from "../suspense";
-import { create } from "zustand";
-
-interface State {
-  render: boolean;
-  setRender: (render: boolean) => void;
-}
-
-export const useRender = create<State>()((set) => ({
-  render: false,
-  setRender: (render) => set({ render }),
-}));
+import { useRenderedSuspenses } from "src/suspense/use-rendered-suspenses";
 
 interface Props {
   children?: React.ReactNode;
-  /**
-   * Whether to force render the component in production and Suspenses even on production builds.
-   */
-  forceRender?: boolean;
 }
 
 /**
- * Contains all the Suspense rendered on the actual page. When interact with the suspenses
- * you can toggle to render the Suspense fallbacks.
- */
-export function DevTools({ children, forceRender }: Props) {
-  if (!__IS__DEV__ && !forceRender) return null;
-
-  return (
-    <DropdownSuspense forceRender={forceRender}>{children}</DropdownSuspense>
-  );
-}
-
-/**
- * @deprecated Use `<DevTools/>` instead.
+ * Always render the dropdown even if it is not a development environment
  *
- * We changed the name to `<DevTools/>` to better reflect its purpose and give it a more descriptive name.
+ * @internal This is not part of public API since is only a feature for docs.
+ * @deprecated
  */
-export function DevDropdown({ children, forceRender }: Props) {
-  if (!__IS__DEV__ && !forceRender) return null;
-
-  return (
-    <DropdownSuspense forceRender={forceRender}>{children}</DropdownSuspense>
-  );
+export function always_render_DevTools({ children }: Props) {
+  return <DropdownSuspense>{children}</DropdownSuspense>;
 }
 
-function DropdownSuspense({ children, forceRender }: Props) {
-  const setRender = useRender((state) => state.setRender);
-
+export function DropdownSuspense({ children }: Props) {
   const [position, setPosition] = useState("bottom-right");
 
   const handlePositionChange = (value: string) => {
@@ -79,8 +48,7 @@ function DropdownSuspense({ children, forceRender }: Props) {
     if (stored) {
       setPosition(stored);
     }
-    setRender(forceRender ?? false);
-  }, [forceRender]);
+  }, []);
 
   return (
     <DropdownMenu>
@@ -145,5 +113,85 @@ function DropdownSuspense({ children, forceRender }: Props) {
         </DropdownMenuGroup>
       </DropdownMenuContent>
     </DropdownMenu>
+  );
+}
+
+const MAX_VISIBLE_SUSPENSES = 25;
+
+function DropdownSuspenseContent() {
+  const renderedSuspenses = useRenderedSuspenses(
+    (state) => state.renderedSuspenses
+  );
+  const selectedSuspenses = useRenderedSuspenses(
+    (state) => state.selectedSuspenses
+  );
+  const setHoveredSuspense = useRenderedSuspenses(
+    (state) => state.setHoveredSuspense
+  );
+  const setSelectedSuspense = useRenderedSuspenses(
+    (state) => state.setSelectedSuspense
+  );
+
+  const visibleSuspenses = useMemo(
+    () =>
+      Array.from(renderedSuspenses)
+        .map((id) => ({
+          id,
+          isSelected: selectedSuspenses.has(id),
+        }))
+        .slice(0, MAX_VISIBLE_SUSPENSES),
+    [renderedSuspenses, selectedSuspenses]
+  );
+
+  return (
+    <DropdownMenuGroup className="flex flex-col gap-1">
+      <DropdownMenuGroupLabel>Rendered Suspenses</DropdownMenuGroupLabel>
+      {visibleSuspenses.length > 0 ? (
+        visibleSuspenses.map(({ id, isSelected }) => (
+          <DropdownMenuItem
+            key={id}
+            onMouseEnter={() => setHoveredSuspense(id)}
+            onMouseLeave={() => setHoveredSuspense(null)}
+            onClick={() => {
+              setSelectedSuspense(id);
+              setHoveredSuspense(null);
+            }}
+            className={cn(
+              "flex items-center gap-2",
+              isSelected && "bg-primary/10"
+            )}
+          >
+            {isSelected && (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="lucide lucide-chevron-right-icon lucide-chevron-right text-primary"
+              >
+                <title>Chevron Right</title>
+                <path d="m9 18 6-6-6-6" />
+              </svg>
+            )}
+            {id}
+          </DropdownMenuItem>
+        ))
+      ) : (
+        <DropdownMenuItem disabled className="flex flex-col gap-1">
+          <span>No Suspenses Rendered</span>
+          <small>
+            If you have one, check if its imported from
+            <pre>
+              <code className="font-mono">suspense-fallback-debugger</code>
+            </pre>
+          </small>
+        </DropdownMenuItem>
+      )}
+    </DropdownMenuGroup>
   );
 }

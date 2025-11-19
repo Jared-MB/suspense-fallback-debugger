@@ -2,7 +2,12 @@ import { defineConfig } from "tsdown";
 import pluginBabel from "@rollup/plugin-babel";
 
 export default defineConfig({
-  entry: ["./src/index.ts", "./src/components/dropdown-menu.tsx"],
+  entry: [
+    "./src/index.ts",
+    "./src/components/dropdown-menu.tsx",
+    "./src/internal/index.ts",
+  ],
+
   minify: true,
   external: ["react", "react-dom"],
   plugins: [
