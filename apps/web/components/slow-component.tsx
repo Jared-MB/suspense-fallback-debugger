@@ -1,6 +1,6 @@
 import { Card, CardDescription } from "@workspace/ui/components/card";
 import Image from "next/image";
-import { Suspense } from "suspense-fallback-debugger";
+import { always_render_Suspense as Suspense } from "suspense-fallback-debugger/internal";
 import { formatDistance } from "date-fns";
 import { ENV } from "@/lib/constants";
 import Link from "next/link";

@@ -4,7 +4,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "@workspace/ui/globals.css";
 import "driver.js/dist/driver.css";
 import { Providers } from "@/components/providers";
-import { DevTools } from "suspense-fallback-debugger/dev";
+import { always_render_DevTools as DevTools } from "suspense-fallback-debugger/internal";
 import {
   SidebarInset,
   SidebarProvider,

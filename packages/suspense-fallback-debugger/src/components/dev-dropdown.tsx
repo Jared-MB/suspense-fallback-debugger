@@ -26,6 +26,8 @@ interface Props {
 /**
  * Always render the dropdown even if it is not a development environment
  *
+ * **Should not be used for most other cases**
+ *
  * @internal This is not part of public API since is only a feature for docs.
  * @deprecated
  */
