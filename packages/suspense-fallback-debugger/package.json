@@ -1,6 +1,6 @@
 {
   "name": "suspense-fallback-debugger",
-  "version": "1.2.3",
+  "version": "2.0.0",
   "description": "Suspense Fallback Debugger for React",
   "main": "dist/index.mjs",
   "module": "dist/index.mjs",

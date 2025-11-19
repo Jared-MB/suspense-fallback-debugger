@@ -1,5 +1,11 @@
 # suspense-fallback-debugger
 
+## 2.0.0
+
+### Major Changes
+
+- 05e528c: Improve on production bundle size, go from 23kb with all 3 components to ~368 bytes with all 3 components
+
 ## 1.2.3
 
 ### Patch Changes

@@ -1,5 +1,12 @@
 # web
 
+## 0.0.8
+
+### Patch Changes
+
+- Updated dependencies [05e528c]
+  - suspense-fallback-debugger@2.0.0
+
 ## 0.0.7
 
 ### Patch Changes
