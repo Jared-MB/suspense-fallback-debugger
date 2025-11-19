@@ -6,7 +6,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useContext } from "react";
 import { useDebouncedCallback } from "use-debounce";
 
-import { SuspenseContext } from "suspense-fallback-debugger";
+import { SuspenseContext } from "suspense-fallback-debugger/context";
 import { ENV } from "@/lib/constants";
 
 /**
