@@ -1,4 +1,4 @@
-import { Suspense as ReactSuspense, type ComponentProps, lazy } from "react";
+import { Suspense as ReactSuspense, type ComponentProps } from "react";
 import { EnhanceSuspense } from "./enhance-suspense";
 
 export type SuspenseProps = ComponentProps<typeof ReactSuspense> & {
